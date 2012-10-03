@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Data.Entity.Migrations;
+using System.Linq;
 using System.Threading;
+using Tricking.Data;
 using Tricking.Models;
 
 namespace Tricking
@@ -8,27 +11,31 @@ namespace Tricking
     {
         static void Main(string[] args)
         {
-            SeedDatabase();
+            //SeedDatabase();
 
-            var tricker = AskFor.Tricker();
-            var trick = AskFor.Trick(tricker);
+            //var x = new TrickingContext().Trickers.Include("Tricks").ToList();
 
-            var result = PerformTrick(trick);
+            //Console.WriteLine(x.First().Name);
 
-            if (!result)
-            {
-                string input;
+            //var tricker = AskFor.Tricker();
+            //var trick = AskFor.Trick(tricker);
 
-                do
-                {
-                    Console.WriteLine();
-                    Console.WriteLine("Would you like to retry? y/n");
-                    input = Console.ReadLine();
+            //var result = PerformTrick(trick);
 
-                    if (input == "y")
-                        PerformTrick(trick);
-                } while (input == "y");
-            }
+            //if (!result)
+            //{
+            //    string input;
+
+            //    do
+            //    {
+            //        Console.WriteLine();
+            //        Console.WriteLine("Would you like to retry? y/n");
+            //        input = Console.ReadLine();
+
+            //        if (input == "y")
+            //            PerformTrick(trick);
+            //    } while (input == "y");
+            //}
 
             //End
             Console.ReadLine();
@@ -36,23 +43,27 @@ namespace Tricking
 
         private static void SeedDatabase()
         {
-            var context = new TrickingEntities();
+            var trickingContext = new TrickingContext();
+            trickingContext.TrickersTricks.AddOrUpdate(new TrickersTrick { Id = 1, TrickerId = 1, Profiency = 5 });
+            trickingContext.SaveChanges();
 
-            context.TrickTypes.AddObject(new TrickType { Id = 1, Name = "A" });
-            context.TrickTypes.AddObject(new TrickType { Id = 2, Name = "B" });
-            context.TrickTypes.AddObject(new TrickType { Id = 3, Name = "C" });
+        //    var context = new TrickingEntities();
 
-            context.SaveChanges();
+        //    context.TrickTypes.AddObject(new TrickType { Id = 1, Name = "A" });
+        //    context.TrickTypes.AddObject(new TrickType { Id = 2, Name = "B" });
+        //    context.TrickTypes.AddObject(new TrickType { Id = 3, Name = "C" });
 
-            context.Trickers.AddObject(new Tricker { Id = 1, Name = "Vellu" });
-            context.Trickers.AddObject(new Tricker { Id = 1, Name = "Danny" });
-            context.Trickers.AddObject(new Tricker { Id = 1, Name = "Guthrie" });
+        //    context.SaveChanges();
 
-            context.SaveChanges();
+        //    context.Trickers.AddObject(new Tricker { Id = 1, Name = "Vellu" });
+        //    context.Trickers.AddObject(new Tricker { Id = 1, Name = "Danny" });
+        //    context.Trickers.AddObject(new Tricker { Id = 1, Name = "Guthrie" });
 
-            context.Tricks.AddObject(new Trick { Id = 1, TrickType_Id = 1, Tricker_Id = 1 });
+        //    context.SaveChanges();
 
-            context.SaveChanges();
+        //    context.Tricks.AddObject(new Trick { Id = 1, TrickType_Id = 1, Tricker_Id = 1 });
+
+        //    context.SaveChanges();
         }
 
         public static void DisplayWaiting()
@@ -83,5 +94,7 @@ namespace Tricking
                 return false;
             }
         } 
+
+
     }
 }

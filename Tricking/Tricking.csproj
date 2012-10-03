@@ -51,12 +51,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.PowerShell">
-      <HintPath>..\..\..\..\GitHub\eManager\packages\EntityFramework.5.0.0\tools\EntityFramework.PowerShell.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.PowerShell.Utility">
-      <HintPath>..\..\..\..\GitHub\eManager\packages\EntityFramework.5.0.0\tools\EntityFramework.PowerShell.Utility.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -70,6 +64,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Tricker.cs" />
+    <Compile Include="Data\TrickersTrick.cs" />
+    <Compile Include="Data\TrickingContext.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AskFor.cs" />
     <Compile Include="Models\Combo.cs" />
     <Compile Include="Models\Dice.cs" />
@@ -109,9 +107,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
