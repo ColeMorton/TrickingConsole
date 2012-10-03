@@ -64,18 +64,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\Do.cs" />
+    <Compile Include="Core\AskFor.cs" />
+    <Compile Include="Core\Dice.cs" />
+    <Compile Include="Core\Display.cs" />
+    <Compile Include="Data\Trick.cs" />
     <Compile Include="Data\Tricker.cs" />
     <Compile Include="Data\TrickersTrick.cs" />
     <Compile Include="Data\TrickingContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AskFor.cs" />
-    <Compile Include="Models\Combo.cs" />
-    <Compile Include="Models\Dice.cs" />
-    <Compile Include="Models\DoTrick.cs" />
-    <Compile Include="Models\ITrickProficiency.cs" />
-    <Compile Include="Models\Transistion.cs" />
-    <Compile Include="Models\Trick.cs" />
-    <Compile Include="Models\Tricker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
