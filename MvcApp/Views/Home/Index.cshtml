@@ -1,0 +1,78 @@
+﻿@model MvcApp.Models.HomeModel
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>Home</h2>
+
+
+    <fieldset>
+        
+    <legend>Tricking Console</legend>
+        
+        <table>
+        
+    @if(Model.Trickers.Any())
+        {
+        
+         using (Html.BeginForm("Tricker", "Home", FormMethod.Post, new { id = "TrickerForm" }))
+         {
+
+             <tr>
+                 <td style="width: 5%">Tricker</td>
+                 <td>
+                     @Html.DropDownList(
+                         "TrickerId",
+                         (IEnumerable<SelectListItem>)
+                         Model.Trickers,
+                         "--Select One--",
+                         new
+                             {
+                                 onchange = "document.getElementById('TrickerForm').submit();"
+                             })
+                 </td>
+             </tr>
+         }
+        }
+        
+        @if(Model.TrickersTricks.Any())
+        {
+            using (Html.BeginForm("TrickersTrick", "Home", FormMethod.Post, new { id = "TrickersTrickForm" }))
+            {
+                @Html.Hidden("ConsoleText", Model.ConsoleText);
+                @Html.Hidden("TrickerId", Model.ConsoleText);
+                
+            <tr>
+                    <td style="width: 5%">Trick</td>
+                    <td>
+                        @Html.DropDownList(
+                            "TrickersTrickId",
+                            (IEnumerable<SelectListItem>)
+                            Model.TrickersTricks,
+                            "--Select One--",
+                            new
+                                {
+                                    onchange = "document.getElementById('TrickersTrickForm').submit();"
+                                })
+                    </td>
+                </tr>
+
+            }
+        }
+ </table>
+        
+    </fieldset>
+
+<hr/>
+
+<fieldset>
+    
+    <legend>Tricking Console</legend>
+    
+    <div>
+        @Html.TextArea("ConsoleText", Model.ConsoleText, new { @class = "style='width: 50%'" })
+    </div>
+    
+</fieldset>

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricking", "Tricking\Tricki
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{D053DEF3-122A-4DD4-8421-27B9AF57B6CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcApp", "MvcApp\MvcApp.csproj", "{E951708F-8110-465D-81CE-5CC7775FB719}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{E5AAC082-48C6-4DD2-B45D-7FB7A8573F52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E5AAC082-48C6-4DD2-B45D-7FB7A8573F52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E5AAC082-48C6-4DD2-B45D-7FB7A8573F52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E951708F-8110-465D-81CE-5CC7775FB719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E951708F-8110-465D-81CE-5CC7775FB719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E951708F-8110-465D-81CE-5CC7775FB719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E951708F-8110-465D-81CE-5CC7775FB719}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
