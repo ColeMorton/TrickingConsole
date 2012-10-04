@@ -1,0 +1,50 @@
+Tricker			property: TrickCategory (Start 35)
+
+TrickersTrick       	property: Control loss/gain
+
+TrickersTransistion	property: Control loss/gain
+
+Trick	property: power requirement
+Trick   property: Control loss/gain (Combos)
+
+
+Transistion	property: Control loss/gain
+
+Randomness: +/-200 to TOTAL 
+
+Power cost for trick: Amount set at start of the match is spent with each action
+Control required for trick: Changes per tricker 
+
+Tricker Power: 40MAX
+Tricker Power: +30 after each combo/round.
+
+total success = power * control
+
+total success = 1000MAX.
+
+total success = 
+        > 60% = perfect landing (PL)
+    	> 40% && < 60% = clean landing (CL)
+        > 40% && < 20% = not landed (NL)
+        < 20% = potential injury  (PI)
+
+
+TrickerTrickCategory Control:	20% (TTCC)
+TrickersTrick Control:		80% (TTC)
+
+(((TTCC * 0.2) + (TTC * 0.8)) * POWER = TOTAL/PREDICTED) 
++/- Consistancy = Final
+---
+((35 * 0.2 = 7) + (0 * 0.8 = 0)) * 40 = 280
+((36 * 0.2 = 8) + (1 * 0.8 = 1)) * 40 = 360
+((37 * 0.2 = 8) + (2 * 0.8 = 2)) * 40 = 400
+((38 * 0.2 = 8) + (3 * 0.8 = 3)) * 40 = 440
+((39 * 0.2 = 8) + (4 * 0.8 = 3)) * 40 = 440
+((40 * 0.2 = 8) + (5 * 0.8 = 4)) * 40 = 480
+((41 * 0.2 = 9) + (6 * 0.8 = 5)) * 40 = 560
+((42 * 0.2 = 9) + (7 * 0.8 = 6)) * 40 = 600
+
+To TTCC and TTC: 100MAX
+Upskilling control points: 	(PL) = +2 points
+				(CL) = +1 points
+
