@@ -6,11 +6,6 @@
 
         public void WriteLine(string line)
         {
-            if (!string.IsNullOrEmpty(Text))
-            {
-                Text += NewLine;
-            }
-
             Text += line + NewLine;
         }
 

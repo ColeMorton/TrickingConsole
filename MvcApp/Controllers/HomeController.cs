@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using MvcApp.Models;
+using Tricking.Actions;
 
 namespace MvcApp.Controllers
 {
@@ -29,7 +30,9 @@ namespace MvcApp.Controllers
 
             if (action.ToLower() == "performtrick")
             {
-                _console.WriteLine("You performed: " + model.SelectedTrickersTrick.Trick.Name);
+                var result = Do.Trick(model.TrickersTrickId);
+
+                _console.WriteLine(result ? "Success!" : "Fail!");
             }
 
             model.ConsoleText = _console.Text;

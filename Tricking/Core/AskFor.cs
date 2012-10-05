@@ -84,7 +84,7 @@ namespace Tricking.Core
                 Console.WriteLine();
 
                 if (input != null && input.ToLower() == "y")
-                    Do.Trick(trick);
+                    Do.Trick(trick.Id);
             } while (input != null && input.ToLower() == "y");
         }
     }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using Tricking.Core;
 using Tricking.Data;
 
@@ -6,20 +6,15 @@ namespace Tricking.Actions
 {
     public static class Do
     {
-        public static bool Trick(TrickersTrick trick)
+        public static bool Trick(int trickersTrickId)
         {
-            Console.Write("Performing trick:");
-            Display.Waiting();
+            var context = new TrickingContext();
+            var trick = context.TrickersTricks.SingleOrDefault(t => t.Id == trickersTrickId);
+            if (trick == null) return false;
 
             var chance = Dice.Roll();
 
-            if (chance * trick.Profiency > 50)
-            {
-                Console.WriteLine("Success!!");
-                return true;
-            }
-            Console.WriteLine("Failed!!");
-            return false;
+            return chance * trick.Profiency > 50;
         } 
     }
 }

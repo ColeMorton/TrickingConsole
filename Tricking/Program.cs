@@ -11,16 +11,16 @@ namespace Tricking
         {
             var tricker = AskFor.Tricker();
             var trick = AskFor.Trick(tricker);
-            var result = Do.Trick(trick);
+            //var result = Do.Trick(trick);
 
-            if (!result)
-            {
-                AskFor.DoTrick(trick);
-            }
-            else
-            {
-                Console.ReadLine();
-            }
+            //if (!result)
+            //{
+            //    AskFor.DoTrick(trick);
+            //}
+            //else
+            //{
+            //    Console.ReadLine();
+            //}
         }
     }
 }

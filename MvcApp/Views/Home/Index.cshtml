@@ -5,12 +5,11 @@
     Layout = "../Shared/_BootstrapLayout.cshtml";
 }
 
-<h2>Home</h2>
-
 @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "IndexForm" }))
 {
-
-<form>
+        <div class="span4 well">
+        
+        <form>
         
         <legend>Tricking Console</legend>
         
@@ -65,14 +64,9 @@
         
     </form>
 
-    <form>
-    
-        <legend>Output</legend>
-    
-        <div>
-            @Html.TextArea("ConsoleText", Model.ConsoleText, new {@style = "width: 100%"})
-        </div>
-    
-    </form>
+    </div>
 
+        <div class="span8 well">
+            @Html.TextArea("ConsoleText", Model.ConsoleText)
+        </div>
 }
