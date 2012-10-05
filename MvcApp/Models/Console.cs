@@ -1,18 +1,20 @@
 ﻿namespace MvcApp.Models
 {
-    public static class Console
+    public class Console
     {
-        public static string Heading()
+        public string Text { get; set; }
+
+        public void WriteLine(string line)
         {
-            return "Console: ";
+            if (!string.IsNullOrEmpty(Text))
+            {
+                Text += NewLine;
+            }
+
+            Text += line + NewLine;
         }
 
-        public static string WriteLine(string text, string line)
-        {
-            return text + NewLine + line + NewLine;
-        }
-
-        public static string NewLine
+        public string NewLine
         {   
             get
             {

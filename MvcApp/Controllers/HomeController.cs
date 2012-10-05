@@ -5,6 +5,8 @@ namespace MvcApp.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly Console _console = new Console();
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -12,17 +14,25 @@ namespace MvcApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Tricker(HomeModel model)
+        public ActionResult Index(HomeModel model, string action)
         {
-            model.SetTrickersTricks();
-            model.ConsoleText = Console.WriteLine(model.ConsoleText, "You selected: " + model.SelectedTricker.Name);
-            return View("Index", model);
-        }
+            if (model.TrickerId != 0)
+            {
+                model.SetTrickersTricks();
+                _console.WriteLine("You selected: " + model.SelectedTricker.Name);
+            }
 
-        [HttpPost]
-        public ActionResult TrickersTrick(HomeModel model)
-        {
-            model.ConsoleText = Console.WriteLine(model.ConsoleText, "You selected: " + model.SelectedTrickersTrick.Trick.Name);
+            if (model.TrickerId != 0 && model.TrickersTrickId != 0)
+            {
+                _console.WriteLine("You selected: " + model.SelectedTrickersTrick.Trick.Name);
+            }
+
+            if (action.ToLower() == "performtrick")
+            {
+                _console.WriteLine("You performed: " + model.SelectedTrickersTrick.Trick.Name);
+            }
+
+            model.ConsoleText = _console.Text;
             return View("Index", model);
         }
     }

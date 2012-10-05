@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
@@ -10,7 +11,6 @@ namespace MvcApp.Models
     {
         public HomeModel()
         {
-            ConsoleText = Console.Heading();
             Trickers = new List<SelectListItem>();
             TrickersTricks = new List<SelectListItem>();
 
@@ -19,8 +19,10 @@ namespace MvcApp.Models
 
         public string ConsoleText { get; set; }
 
+        [Display(Name = "Tricker")]
         public int TrickerId { get; set; }
 
+        [Display(Name = "Trick")]
         public int TrickersTrickId { get; set; }
 
         public Tricker SelectedTricker

@@ -2,77 +2,77 @@
 
 @{
     ViewBag.Title = "Home";
-    Layout = "../Shared/_Layout.cshtml";
+    Layout = "../Shared/_BootstrapLayout.cshtml";
 }
 
 <h2>Home</h2>
 
+@using (Html.BeginForm("Index", "Home", FormMethod.Post, new { id = "IndexForm" }))
+{
 
-    <fieldset>
+<form>
         
-    <legend>Tricking Console</legend>
+        <legend>Tricking Console</legend>
         
-        <table>
-        
-    @if(Model.Trickers.Any())
-        {
-        
-         using (Html.BeginForm("Tricker", "Home", FormMethod.Post, new { id = "TrickerForm" }))
-         {
-
-             <tr>
-                 <td style="width: 5%">Tricker</td>
-                 <td>
-                     @Html.DropDownList(
-                         "TrickerId",
-                         (IEnumerable<SelectListItem>)
-                         Model.Trickers,
-                         "--Select One--",
-                         new
-                             {
-                                 onchange = "document.getElementById('TrickerForm').submit();"
-                             })
-                 </td>
-             </tr>
-         }
-        }
-        
-        @if(Model.TrickersTricks.Any())
-        {
-            using (Html.BeginForm("TrickersTrick", "Home", FormMethod.Post, new { id = "TrickersTrickForm" }))
+            @if (Model.Trickers.Any())
             {
-                @Html.Hidden("ConsoleText", Model.ConsoleText);
-                @Html.Hidden("TrickerId", Model.ConsoleText);
                 
-            <tr>
-                    <td style="width: 5%">Trick</td>
-                    <td>
-                        @Html.DropDownList(
-                            "TrickersTrickId",
-                            (IEnumerable<SelectListItem>)
-                            Model.TrickersTricks,
-                            "--Select One--",
-                            new
-                                {
-                                    onchange = "document.getElementById('TrickersTrickForm').submit();"
-                                })
-                    </td>
-                </tr>
-
+                                <div class="editor-label">
+            @Html.LabelFor(model => model.TrickerId)
+        </div>
+                <div class="editor-field">
+                    @Html.DropDownList(
+                        "TrickerId",
+                        (IEnumerable<SelectListItem>)
+                        Model.Trickers,
+                        "--Select One--",
+                        new
+                            {
+                                onchange = "document.getElementById('IndexForm').submit('Index');"
+                            })
+                </div>
             }
-        }
- </table>
         
-    </fieldset>
+            @if (Model.TrickersTricks.Any())
+            {
+                
+                <div class="editor-label">
+            @Html.LabelFor(model => model.TrickersTrickId)
+        </div>
+                <div class="editor-field">
+                    @Html.DropDownList(
+                        "TrickersTrickId",
+                        (IEnumerable<SelectListItem>)
+                        Model.TrickersTricks,
+                        "--Select One--",
+                        new
+                            {
+                                onchange = "document.getElementById('IndexForm').submit();"
+                            })
+                </div>
+                
+            }
+        
+        
+            @if (Model.TrickersTrickId != 0)
+            {
+                <p>
+                    <button type="submit" value="PerformTrick" name="action" class="btn btn-primary">
+                        Perform Trick
+                    </button>
+                </p>
+            }
+        
+    </form>
 
-<hr/>
+    <form>
+    
+        <legend>Output</legend>
+    
+        <div>
+            @Html.TextArea("ConsoleText", Model.ConsoleText, new {@style = "width: 100%"})
+        </div>
+    
+    </form>
 
-<fieldset>
-    
-    <legend>Tricking Console</legend>
-    
-    <div>
-        @Html.TextArea("ConsoleText", Model.ConsoleText, new { @class = "style='width: 50%'" })
-    </div>
-    
-</fieldset>
+}
