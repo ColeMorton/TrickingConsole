@@ -1,9 +1,8 @@
-using Tricking.Data;
+using Tricking.Domain.Data;
+using System.Data.Entity.Migrations;
 
-namespace Tricking.Migrations
+namespace Tricking.Domain.Migrations
 {
-    using System.Data.Entity.Migrations;
-
     internal sealed class Configuration : DbMigrationsConfiguration<TrickingContext>
     {
         public Configuration()

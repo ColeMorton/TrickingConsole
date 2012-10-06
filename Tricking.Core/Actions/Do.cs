@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using Tricking.Core;
-using Tricking.Data;
+using System.Linq;
+using Tricking.Domain.Data;
 
-namespace Tricking.Actions
+namespace Tricking.Core.Actions
 {
     public static class Do
     {

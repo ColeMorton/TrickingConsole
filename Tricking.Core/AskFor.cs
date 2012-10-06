@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
-using Tricking.Actions;
-using Tricking.Data;
+using Tricking.Core.Actions;
+using Tricking.Domain.Data;
 
 namespace Tricking.Core
 {
@@ -20,7 +20,7 @@ namespace Tricking.Core
                 Console.WriteLine("Please select a tricker from the following:");
 
                 foreach (var tricker in trickers)
-                    Console.WriteLine(tricker.Name);
+                    Console.WriteLine((string) tricker.Name);
 
                 Console.WriteLine();
                 Console.WriteLine("Exit: To leave");
@@ -32,7 +32,7 @@ namespace Tricking.Core
                 if (string.IsNullOrEmpty(input) || input == "exit")
                     Environment.Exit(1);
 
-            } while (!trickers.Select(t => t.Name.ToLower()).Contains(input));
+            } while (!Queryable.Contains(trickers.Select(t => t.Name.ToLower()), input));
 
             var trickerSelected = context.Trickers.Single(t => t.Name.ToLower() == input);
             Console.WriteLine("You selected: " + trickerSelected.Name);
@@ -51,7 +51,7 @@ namespace Tricking.Core
                 Console.WriteLine("Please select a trick from the following:");
 
                 foreach (var trick in tricker.Tricks)
-                    Console.WriteLine(trick.Trick.Name);
+                    Console.WriteLine((string) trick.Trick.Name);
 
                 Console.WriteLine();
                 Console.WriteLine("Exit: To leave");
@@ -63,7 +63,7 @@ namespace Tricking.Core
                 if (string.IsNullOrEmpty(input) || input == "exit")
                     Environment.Exit(1);
 
-            } while (!tricker.Tricks.Select(t => t.Trick.Name.ToLower()).Contains(input));
+            } while (!Enumerable.Contains(tricker.Tricks.Select(t => t.Trick.Name.ToLower()), input));
 
             var trickSelected = tricker.Tricks.Single(t => t.Trick.Name.ToLower() == input);
             Console.WriteLine("You selected: " + trickSelected.Trick.Name);

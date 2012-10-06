@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace MvcApp
+namespace Tricking.Mvc.App_Start
 {
     public class BundleConfig
     {

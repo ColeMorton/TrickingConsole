@@ -3,13 +3,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
-using Tricking.Data;
+using Tricking.Domain.Data;
 
-namespace MvcApp.Models
+namespace Tricking.Mvc.Models
 {
-    public class HomeModel
+    public class ConsolePageModel
     {
-        public HomeModel()
+        public ConsolePageModel()
         {
             Trickers = new List<SelectListItem>();
             TrickersTricks = new List<SelectListItem>();
@@ -25,25 +25,27 @@ namespace MvcApp.Models
         [Display(Name = "Trick")]
         public int TrickersTrickId { get; set; }
 
-        public Tricker SelectedTricker
-        {
-            get 
-            { 
-                return new TrickingContext().Trickers.First(t => t.Id == TrickerId);
-            }
-        }
-
-        public TrickersTrick SelectedTrickersTrick
-        {
-            get
-            {
-                return new TrickingContext().TrickersTricks.First(t => t.Id == TrickersTrickId);
-            }
-        }
-
         public List<SelectListItem> Trickers { get; set; }
 
         public List<SelectListItem> TrickersTricks { get; set; }
+
+        public string TrickerName
+        {
+            get 
+            { 
+                return TrickerId != 0 ? 
+                    Trickers.First(t => t.Value == TrickerId.ToString()).Text : string.Empty; 
+            }
+        }
+
+        public string TrickName
+        {
+            get
+            {
+                return TrickersTrickId != 0 ?
+                    TrickersTricks.First(t => t.Value == TrickersTrickId.ToString()).Text : string.Empty;
+            }
+        }
 
         private void SetTrickers()
         {

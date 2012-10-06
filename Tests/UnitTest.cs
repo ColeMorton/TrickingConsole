@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tricking.Data;
+using Tricking.Domain.Data;
 
-namespace Tests
+namespace Tricking.Tests
 {
     [TestClass]
     public class UnitTest

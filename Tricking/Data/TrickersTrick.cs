@@ -1,4 +1,4 @@
-namespace Tricking.Data
+namespace Tricking.Domain.Data
 {
     public class TrickersTrick 
     {

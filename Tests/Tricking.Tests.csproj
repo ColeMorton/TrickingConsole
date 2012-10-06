@@ -6,8 +6,8 @@
     <ProjectGuid>{D053DEF3-122A-4DD4-8421-27B9AF57B6CA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tests</RootNamespace>
-    <AssemblyName>Tests</AssemblyName>
+    <RootNamespace>Tricking.Tests</RootNamespace>
+    <AssemblyName>Tricking.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -57,9 +57,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tricking\Tricking.csproj">
+    <ProjectReference Include="..\Tricking\Tricking.Domain.csproj">
       <Project>{e5aac082-48c6-4dd2-b45d-7fb7a8573f52}</Project>
-      <Name>Tricking</Name>
+      <Name>Tricking.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

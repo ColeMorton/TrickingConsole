@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace Tricking.Data
+namespace Tricking.Domain.Data
 {
     public class TrickingContext : DbContext
     {

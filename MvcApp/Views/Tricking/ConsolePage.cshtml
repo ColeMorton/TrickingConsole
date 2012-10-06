@@ -1,0 +1,67 @@
+﻿@model Tricking.Mvc.Models.ConsolePageModel
+@{
+    ViewBag.Title = "Home";
+    Layout = "../Shared/_BootstrapLayout.cshtml";
+}
+@using (Html.BeginForm("ConsolePage", "Tricking", FormMethod.Post, new { id = "Form" }))
+{
+    <div class="span4 well">
+
+        <form>
+
+        <legend>Tricking Console</legend>
+
+        @if (Model.Trickers.Any())
+        {
+                
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TrickerId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList(
+                        "TrickerId",
+                        (IEnumerable<SelectListItem>)
+                        Model.Trickers,
+                        "--Select One--",
+                        new
+                            {
+                                onchange = "document.getElementById('Form').submit();"
+                            })
+            </div>
+        }
+        @if (Model.TrickersTricks.Any())
+        {
+                
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TrickersTrickId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownList(
+                        "TrickersTrickId",
+                        (IEnumerable<SelectListItem>)
+                        Model.TrickersTricks,
+                        "--Select One--",
+                        new
+                            {
+                                onchange = "document.getElementById('Form').submit();"
+                            })
+            </div>
+                
+        }
+        @if (Model.TrickersTrickId != 0)
+        {
+            <p>
+                <button type="submit" value="PerformTrick" name="action" class="btn btn-primary">
+                    Perform Trick
+                </button>
+            </p>
+        }
+        </form>
+    </div>
+
+    <div class="span12">
+        <div class="well">
+            @Html.TextArea("ConsoleText", Model.ConsoleText)
+        </div>
+    </div>
+}

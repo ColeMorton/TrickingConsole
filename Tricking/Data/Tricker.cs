@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Tricking.Data
+namespace Tricking.Domain.Data
 {
     public class Tricker
     {

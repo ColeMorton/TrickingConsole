@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MvcApp</RootNamespace>
-    <AssemblyName>MvcApp</AssemblyName>
+    <RootNamespace>Tricking.Mvc</RootNamespace>
+    <AssemblyName>Tricking.Mvc</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -125,12 +125,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\TrickingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Console.cs" />
-    <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\ConsolePageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -210,8 +211,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_BootstrapLayout.cshtml" />
+    <Content Include="Views\Tricking\ConsolePage.cshtml" />
+    <Content Include="Views\Tricking\Learn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -220,9 +222,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Tricking\Tricking.csproj">
+    <ProjectReference Include="..\Tricking.Core\Tricking.Core.csproj">
+      <Project>{d000a2f1-9a33-4562-b475-96e3e82284a8}</Project>
+      <Name>Tricking.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Tricking\Tricking.Domain.csproj">
       <Project>{e5aac082-48c6-4dd2-b45d-7fb7a8573f52}</Project>
-      <Name>Tricking</Name>
+      <Name>Tricking.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
