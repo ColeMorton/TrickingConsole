@@ -41,51 +41,51 @@ namespace Tricking.Core
             return trickerSelected;
         }
 
-        public static TrickersTrick Trick(Tricker tricker)
-        {
-            string input;
+        //public static TrickersTrick Trick(Tricker tricker)
+        //{
+        //    string input;
 
-            do
-            {
-                Console.WriteLine();
-                Console.WriteLine("Please select a trick from the following:");
+        //    do
+        //    {
+        //        Console.WriteLine();
+        //        Console.WriteLine("Please select a trick from the following:");
 
-                foreach (var trick in tricker.Tricks)
-                    Console.WriteLine((string) trick.Trick.Name);
+        //        foreach (var trick in tricker.Tricks)
+        //            Console.WriteLine((string) trick.Trick.Name);
 
-                Console.WriteLine();
-                Console.WriteLine("Exit: To leave");
+        //        Console.WriteLine();
+        //        Console.WriteLine("Exit: To leave");
 
-                input = Console.ReadLine();
-                if (!string.IsNullOrEmpty(input)) input = input.ToLower();
-                Console.WriteLine();
+        //        input = Console.ReadLine();
+        //        if (!string.IsNullOrEmpty(input)) input = input.ToLower();
+        //        Console.WriteLine();
 
-                if (string.IsNullOrEmpty(input) || input == "exit")
-                    Environment.Exit(1);
+        //        if (string.IsNullOrEmpty(input) || input == "exit")
+        //            Environment.Exit(1);
 
-            } while (!Enumerable.Contains(tricker.Tricks.Select(t => t.Trick.Name.ToLower()), input));
+        //    } while (!Enumerable.Contains(tricker.Tricks.Select(t => t.Trick.Name.ToLower()), input));
 
-            var trickSelected = tricker.Tricks.Single(t => t.Trick.Name.ToLower() == input);
-            Console.WriteLine("You selected: " + trickSelected.Trick.Name);
-            Console.WriteLine();
+        //    var trickSelected = tricker.Tricks.Single(t => t.Trick.Name.ToLower() == input);
+        //    Console.WriteLine("You selected: " + trickSelected.Trick.Name);
+        //    Console.WriteLine();
 
-            return trickSelected;
-        }
+        //    return trickSelected;
+        //}
 
-        public static void DoTrick(TrickersTrick trick)
-        {
-            string input;
+        //public static void DoTrick(TrickersTrick trick)
+        //{
+        //    string input;
 
-            do
-            {
-                Console.WriteLine();
-                Console.WriteLine("Would you like to retry? y/n");
-                input = Console.ReadLine();
-                Console.WriteLine();
+        //    do
+        //    {
+        //        Console.WriteLine();
+        //        Console.WriteLine("Would you like to retry? y/n");
+        //        input = Console.ReadLine();
+        //        Console.WriteLine();
 
-                if (input != null && input.ToLower() == "y")
-                    Do.Trick(trick.Id);
-            } while (input != null && input.ToLower() == "y");
-        }
+        //        if (input != null && input.ToLower() == "y")
+        //            Do.Trick(trick.Id);
+        //    } while (input != null && input.ToLower() == "y");
+        //}
     }
 }

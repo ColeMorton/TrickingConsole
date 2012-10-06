@@ -10,6 +10,6 @@ namespace Tricking.Domain.Data
         public int Technicality { get; set; }
         public string Name { get; set; }
 
-        public ICollection<TrickersTrick> Tricks { get; set; }
+        public ICollection<TrickProficiency> Proficiencies { get; set; }
     }
 }

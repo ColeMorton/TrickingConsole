@@ -13,29 +13,14 @@ namespace Tricking.Domain.Migrations
 
         protected override void Seed(TrickingContext context)
         {
-            SeedTrickers(context);
+            context.TrickTypes.AddOrUpdate(t => t.Id,
+                new TrickType { Id = 1, Name = "Flip" });
 
-            SeedTricks(context);
-
-            SeedTrickersTricks(context);
-        }
-
-        private static void SeedTrickersTricks(TrickingContext context)
-        {
-            context.TrickersTricks.AddOrUpdate(t => t.Id,
-                new TrickersTrick {Id = 1, TrickerId = 1, TrickId = 1, Profiency = 5});
-        }
-
-        private static void SeedTricks(TrickingContext context)
-        {
             context.Tricks.AddOrUpdate(t => t.Id,
-                new Trick {Id = 1, Name = "BackFlip"});
-        }
+                new Trick { Id = 1, TrickTypeId = 1, Name = "BackFlip", Abbrev = "BF" });
 
-        private static void SeedTrickers(TrickingContext context)
-        {
             context.Trickers.AddOrUpdate(t => t.Id,
-                new Tricker {Id = 1, Name = "Vellu"});
+                new Tricker { Id = 1, Name = "Vellu" });
         }
     }
 }

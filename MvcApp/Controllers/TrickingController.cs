@@ -43,9 +43,9 @@ namespace Tricking.Mvc.Controllers
 
             if (action == Actions.PerformTrick.ToString())
             {
-                var result = Do.Trick(model.TrickersTrickId);
+                //var result = Do.Trick(model.TrickersTrickId);
 
-                _console.WriteLine(result ? "Success!" : "Fail!");
+                //_console.WriteLine(result ? "Success!" : "Fail!");
             }
 
             model.ConsoleText = _console.Text;

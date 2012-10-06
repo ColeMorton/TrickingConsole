@@ -14,6 +14,8 @@ namespace Tricking.Domain.Data
 
         public DbSet<Tricker> Trickers { get; set; }
         public DbSet<Trick> Tricks { get; set; }
-        public DbSet<TrickersTrick> TrickersTricks { get; set; }
+        public DbSet<TrickProficiency> TrickProficiencies { get; set; }
+        public DbSet<TrickTypeProficiency> TrickTypeProficiencies { get; set; }
+        public DbSet<TrickType> TrickTypes { get; set; }
     }
 }

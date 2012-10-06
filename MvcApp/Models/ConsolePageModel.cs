@@ -64,20 +64,20 @@ namespace Tricking.Mvc.Models
 
         public void SetTrickersTricks()
         {
-            if (TrickerId == 0) return;
+            //if (TrickerId == 0) return;
 
-            var context = new TrickingContext();
-            var trickersTricks = context.TrickersTricks
-                    .Include("Trick").Where(t => t.TrickerId == TrickerId);
+            //var context = new TrickingContext();
+            //var trickersTricks = context.Proficiencies
+            //        .Include("Trick").Where(t => t.TrickerId == TrickerId);
 
-            foreach (var trickersTrick in trickersTricks)
-            {
-                TrickersTricks.Add(new SelectListItem
-                {
-                    Text = trickersTrick.Trick.Name,
-                    Value = trickersTrick.Id.ToString(CultureInfo.InvariantCulture)
-                });
-            }
+            //foreach (var trickersTrick in trickersTricks)
+            //{
+            //    TrickersTricks.Add(new SelectListItem
+            //    {
+            //        Text = trickersTrick.Trick.Name,
+            //        Value = trickersTrick.Id.ToString(CultureInfo.InvariantCulture)
+            //    });
+            //}
         }
     }
 }

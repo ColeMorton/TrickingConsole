@@ -67,10 +67,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\TrickTypeProficiency.cs" />
     <Compile Include="Data\Trick.cs" />
     <Compile Include="Data\Tricker.cs" />
-    <Compile Include="Data\TrickersTrick.cs" />
+    <Compile Include="Data\TrickProficiency.cs" />
     <Compile Include="Data\TrickingContext.cs" />
+    <Compile Include="Data\TrickType.cs" />
+    <Compile Include="Migrations\201210060657407_aaa.cs" />
+    <Compile Include="Migrations\201210060657407_aaa.Designer.cs">
+      <DependentUpon>201210060657407_aaa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -102,6 +108,11 @@
       <ProductName>SQL Server Compact 4.0 SP1 CTP1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201210060657407_aaa.resx">
+      <DependentUpon>201210060657407_aaa.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
