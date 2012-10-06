@@ -125,7 +125,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\Controller.cs" />
     <Compile Include="Controllers\TrickController.cs" />
     <Compile Include="Controllers\TrickerController.cs" />
     <Compile Include="Controllers\TrickingController.cs" />

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using Tricking.Domain.Data;
@@ -11,10 +10,15 @@ namespace Tricking.Mvc.Models
     {
         public ConsolePageModel()
         {
-            Trickers = new List<SelectListItem>();
-            TrickersTricks = new List<SelectListItem>();
+            var context = new TrickingContext();
 
-            SetTrickers();
+            Trickers = new List<SelectListItem>();
+            Trickers.AddRange(context.Trickers.ToList().Select(t => 
+                new SelectListItem { Value = t.Id.ToString(), Text = t.Name }));
+
+            Tricks = new List<SelectListItem>();
+            Tricks.AddRange(context.Tricks.ToList().Select(t => 
+                new SelectListItem { Value = t.Id.ToString(), Text = t.Name }));
         }
 
         public string ConsoleText { get; set; }
@@ -23,11 +27,11 @@ namespace Tricking.Mvc.Models
         public int TrickerId { get; set; }
 
         [Display(Name = "Trick")]
-        public int TrickersTrickId { get; set; }
+        public int TrickId { get; set; }
 
         public List<SelectListItem> Trickers { get; set; }
 
-        public List<SelectListItem> TrickersTricks { get; set; }
+        public List<SelectListItem> Tricks { get; set; }
 
         public string TrickerName
         {
@@ -42,42 +46,9 @@ namespace Tricking.Mvc.Models
         {
             get
             {
-                return TrickersTrickId != 0 ?
-                    TrickersTricks.First(t => t.Value == TrickersTrickId.ToString()).Text : string.Empty;
+                return TrickId != 0 ?
+                    Tricks.First(t => t.Value == TrickId.ToString()).Text : string.Empty;
             }
-        }
-
-        private void SetTrickers()
-        {
-            var context = new TrickingContext();
-            var trickers = context.Trickers.ToList();
-
-            foreach (var tricker in trickers)
-            {
-                Trickers.Add(new SelectListItem
-                {
-                    Text = tricker.Name,
-                    Value = tricker.Id.ToString(CultureInfo.InvariantCulture)
-                });
-            }
-        }
-
-        public void SetTrickersTricks()
-        {
-            //if (TrickerId == 0) return;
-
-            //var context = new TrickingContext();
-            //var trickersTricks = context.Proficiencies
-            //        .Include("Trick").Where(t => t.TrickerId == TrickerId);
-
-            //foreach (var trickersTrick in trickersTricks)
-            //{
-            //    TrickersTricks.Add(new SelectListItem
-            //    {
-            //        Text = trickersTrick.Trick.Name,
-            //        Value = trickersTrick.Id.ToString(CultureInfo.InvariantCulture)
-            //    });
-            //}
         }
     }
 }

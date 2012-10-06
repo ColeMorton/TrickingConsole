@@ -5,15 +5,17 @@ namespace Tricking.Core.Actions
 {
     public static class Do
     {
-        //public static bool Trick(int trickersTrickId)
-        //{
-        //    var context = new TrickingContext();
-        //    var trick = context.TrickersTricks.SingleOrDefault(t => t.Id == trickersTrickId);
-        //    if (trick == null) return false;
+        public static bool Trick(int trickerId, int trickId)
+        {
+            var context = new TrickingContext();
+            var proficieny = context.TrickProficiencies.SingleOrDefault(t =>
+                t.TrickerId == trickerId && t.TrickId == trickId);
 
-        //    var chance = Dice.Roll();
+            if (proficieny == null) return false;
 
-        //    return chance * trick.Profiency > 50;
-        //} 
+            var chance = Dice.Roll();
+
+            return chance * proficieny.Control > 50;
+        }
     }
 }
