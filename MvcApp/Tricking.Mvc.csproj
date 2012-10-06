@@ -126,6 +126,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Controller.cs" />
+    <Compile Include="Controllers\TrickController.cs" />
+    <Compile Include="Controllers\TrickerController.cs" />
     <Compile Include="Controllers\TrickingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -214,6 +216,16 @@
     <Content Include="Views\Shared\_BootstrapLayout.cshtml" />
     <Content Include="Views\Tricking\ConsolePage.cshtml" />
     <Content Include="Views\Tricking\Learn.cshtml" />
+    <Content Include="Views\Tricker\Index.cshtml" />
+    <Content Include="Views\Tricker\Details.cshtml" />
+    <Content Include="Views\Tricker\Create.cshtml" />
+    <Content Include="Views\Tricker\Edit.cshtml" />
+    <Content Include="Views\Tricker\Delete.cshtml" />
+    <Content Include="Views\Trick\Index.cshtml" />
+    <Content Include="Views\Trick\Details.cshtml" />
+    <Content Include="Views\Trick\Create.cshtml" />
+    <Content Include="Views\Trick\Edit.cshtml" />
+    <Content Include="Views\Trick\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -247,7 +259,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>15860</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:6538/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

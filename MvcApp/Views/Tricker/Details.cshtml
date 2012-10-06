@@ -1,0 +1,44 @@
+﻿@model Tricking.Domain.Data.Tricker
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_BootstrapLayout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Tricker</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Power)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Power)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Style)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Style)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Technicality)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Technicality)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
