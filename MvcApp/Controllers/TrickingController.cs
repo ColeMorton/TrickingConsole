@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Tricking.Core.Actions;
+using Tricking.Mvc.Helpers;
 using Tricking.Mvc.Models;
 
 namespace Tricking.Mvc.Controllers

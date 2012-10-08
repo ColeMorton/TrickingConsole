@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Tricking.Domain.Data;
+using Tricking.Domain;
+using Tricking.Mvc.Infrastructure;
 
 namespace Tricking.Tests
 {

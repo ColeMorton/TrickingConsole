@@ -1,7 +1,11 @@
-﻿using System.Web.Mvc;
+﻿using System.Configuration;
+using System.Data.Entity;
+using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Tricking.Domain;
 using Tricking.Mvc.App_Start;
+using Tricking.Mvc.Infrastructure;
 
 namespace Tricking.Mvc
 {
