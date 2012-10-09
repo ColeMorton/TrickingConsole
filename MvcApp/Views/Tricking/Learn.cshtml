@@ -1,8 +1,89 @@
-﻿@model dynamic
-
+﻿@model Tricking.Mvc.Models.ConsolePageModel
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Home";
     Layout = "../Shared/_BootstrapLayout.cshtml";
 }
+@using (Html.BeginForm("Learn", "Tricking", FormMethod.Post, new { id = "Form" }))
+{
+    <div class="span4 well">
 
-<h2>Learn</h2>
+        <form>
+
+        <legend>Tricking Console</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TrickId)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList(
+                    "TrickId",
+                    (IEnumerable<SelectListItem>)
+                    Model.Tricks,
+                    "--Select One--",
+                    new
+                        {
+                            onchange = "document.getElementById('Form').submit();"
+                        })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Slider)
+        </div>
+        <div class="editor-field">
+            @if (Model.TrickId != 0)
+            {    
+                <input
+                    type="range"
+                    name="slider"
+                    min="0"
+                    max="100"
+                    value="50"
+                    step="1"/>    
+            }
+            else
+            {
+                <input
+                    disabled="disabled"
+                    onmouseup="document.getElementById('Form').submit();" 
+                    type="range"/>
+            }
+        </div>
+
+        <div class="form-actions">
+            @if (Model.TrickId != 0)
+            {
+                <button type="submit" value="LearnTrick" name="action" class="btn btn-primary">Learn Trick</button>
+            }
+            else
+            {
+                <button disabled="disabled" type="submit" value="LearnTrick" name="action" class="btn btn-primary">
+                    Learn Trick
+                </button>
+            }
+
+            <button type="reset" value="Reset" name="action" class="btn">Cancel</button>
+        </div>
+
+        </form>
+    </div>
+}
+
+<div class="span6 offset3">
+    @if (Model.Success.HasValue && Model.Success.Value)
+    {
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Error</strong> Change a few things up and try submitting again.
+        </div>
+    }
+    @if (Model.Success.HasValue && !Model.Success.Value)
+    {
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Success</strong> You successfully read this important alert message.
+        </div>
+    }
+</div>
+
+
+

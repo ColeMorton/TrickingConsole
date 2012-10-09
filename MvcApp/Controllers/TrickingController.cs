@@ -10,7 +10,8 @@ namespace Tricking.Mvc.Controllers
 
         public enum Actions
         {
-            PerformTrick
+            PerformTrick,
+            LearnTrick
         }
 
         [HttpGet]
@@ -39,7 +40,20 @@ namespace Tricking.Mvc.Controllers
         [HttpGet]
         public ActionResult Learn()
         {
-            return View();
+            return View(new ConsolePageModel());
+        }
+
+        [HttpPost]
+        public ActionResult Learn(ConsolePageModel model, string action)
+        {
+            if (string.IsNullOrEmpty(model.Slider)) return View("Learn", model);
+
+            var power = int.Parse(model.Slider);
+
+            if (model.TrickId != 0 && action == Actions.LearnTrick.ToString())
+                model.Success = Do.LearnTrick(model.TrickId, power);
+
+            return View("Learn", model);
         }
     }
 }

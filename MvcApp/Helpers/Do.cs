@@ -1,5 +1,4 @@
 using System.Linq;
-using Tricking.Domain;
 using Tricking.Mvc.Infrastructure;
 
 namespace Tricking.Mvc.Helpers
@@ -17,6 +16,13 @@ namespace Tricking.Mvc.Helpers
             var chance = Dice.Roll();
 
             return chance * proficieny.Control > 50;
+        }
+
+        public static bool LearnTrick(int trickId, int power)
+        {
+            var chance = Dice.Roll(10);
+
+            return chance * 20 > power;
         }
     }
 }

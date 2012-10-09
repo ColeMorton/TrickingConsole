@@ -51,5 +51,10 @@ namespace Tricking.Mvc.Models
                     Tricks.First(t => t.Value == TrickId.ToString()).Text : string.Empty;
             }
         }
+
+        public bool? Success { get; set; }
+
+        [Display(Name = "Power")]
+        public string Slider { get; set; }
     }
 }
