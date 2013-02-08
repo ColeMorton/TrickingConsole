@@ -6,6 +6,12 @@ position: relative;
 overflow: hidden;
 }
 
+#textArea{
+width: 400px;
+height: 200px;
+rows: 6;
+}
+
 #ball {
 background: #8F0000;
 position: absolute;

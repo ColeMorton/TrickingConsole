@@ -2,16 +2,23 @@ var KEY = {
 	UP: 38,
 	DOWN: 40,
 	W: 87,
-	S: 83
+	S: 83,
+	ONE: 49,
+	TWO: 50,
+	THREE: 51,
+	FOUR: 52,
+	FIVE: 53,
+	SIX: 54,
+	SEVEN: 55,
+	EIGHT: 56,
+	NINE: 57,
 }
+
+var GAMESPEED = 15;
 
 var pingpong = {}
 pingpong.pressedKeys = [];
-pingpong.pressedKeysPlayer1 = {
-	get value() {
-		return pingpong.pressedKeys;
-	}
-}
+pingpong.gameSpeed = GAMESPEED;
 
 pingpong.ball = {
 speed: 2,
@@ -23,8 +30,8 @@ directionY: 1
 
 $(function(){
 
-	// set interval to call gameloop every 15 milliseconds
-	pingpong.timer = setInterval(gameloop,15);
+	// set interval to call gameloop every x milliseconds
+	setGameSpeed();
 
 	// mark down what key is down and up into an array called "pressedKeys"
 	$(document).keydown(function(e){
@@ -37,29 +44,44 @@ $(function(){
 });
 
 function gameloop() {
+ 
 	moveBall();
 	movePaddles();
+	setGameSpeed();
 	outputKeyPressed();
 }
 
+function setGameSpeed() {
+
+	if (pingpong.pressedKeys[KEY.ONE]) { // arrow-up
+		pingpong.gameSpeed = 22;
+	}
+	
+	if (pingpong.pressedKeys[KEY.NINE]) { // arrow-up
+		pingpong.gameSpeed = 8;
+	}
+
+	pingpong.timer = setInterval(gameloop, pingpong.gameSpeed);
+}
+
 function outputKeyPressed() {
-	if (pingpong.pressedKeysPlayer1[KEY.UP]) { // arrow-up
-		var text = $("#textArea").val() + "UP ";		
+	if (pingpong.pressedKeys[KEY.UP]) { // arrow-up
+		var text = $("#textArea").val() + "UP|";		
 		$("#textArea").val(text);
 	}
 
 	if (pingpong.pressedKeys[KEY.DOWN]) { // arrow-down
-		var text = $("#textArea").val() + "DOWN ";		
+		var text = $("#textArea").val() + "DOWN|";		
 		$("#textArea").val(text);
 	}
 
 	if (pingpong.pressedKeys[KEY.W]) { // w
-		var text = $("#textArea").val() + "W ";		
+		var text = $("#textArea").val() + "W|";		
 		$("#textArea").val(text);
 	}
 
 	if (pingpong.pressedKeys[KEY.S]) { // s
-		var text = $("#textArea").val() + "S ";		
+		var text = $("#textArea").val() + "S|";		
 		$("#textArea").val(text);
 	}
 }
@@ -112,22 +134,57 @@ if (ball.y + ball.speed*ball.directionY < 0)
 {
 ball.directionY = 1;
 }
+
 // check right edge
-if (ball.x + ball.speed*ball.directionX > playgroundWidth)
+if (ball.x +ball.speed*ball.directionX > playgroundWidth)
 {
+// player B lost.
+// reset the ball;
+ball.x = 250;
+ball.y = 100;
+$("#ball").css({
+"left": ball.x,
+"top" : ball.y
+});
 ball.directionX = -1;
 }
+
 // check left edge
 if (ball.x + ball.speed*ball.directionX < 0)
 {
-ball.directionX = 1;
+	// player A lost.
+	// reset the ball;
+	ball.x = 150;
+	ball.y = 100;
+	$("#ball").css({"left": ball.x,"top" : ball.y});
+	ball.directionX = 1;
 }
+
+// check left paddle
+var paddleAX = parseInt($("#paddleA").css("left")) + parseInt($("#paddleA").css("width"));
+var paddleAYBottom = parseInt($("#paddleA").css("top")) + parseInt($("#paddleA").css("height"));
+var paddleAYTop = parseInt($("#paddleA").css("top"));
+
+if (ball.x + ball.speed*ball.directionX < paddleAX){
+	if (ball.y + ball.speed*ball.directionY <= paddleAYBottom && ball.y + ball.speed*ball.directionY >= paddleAYTop) {
+		ball.directionX = 1;
+	}
+}
+
+// check right paddle
+var paddleBX = parseInt($("#paddleB").css("left"));
+var paddleBYBottom = parseInt($("#paddleB").css("top")) + parseInt($("#paddleB").css("height"));
+var paddleBYTop = parseInt($("#paddleB").css("top"));
+
+if (ball.x + 20 + ball.speed*ball.directionX >= paddleBX) {
+	if (ball.y + ball.speed*ball.directionY <= paddleBYBottom && ball.y + ball.speed*ball.directionY >= paddleBYTop) {
+		ball.directionX = -1;
+	}
+}
+
 ball.x += ball.speed * ball.directionX;
 ball.y += ball.speed * ball.directionY;
-// check moving paddle here, later.
+
 // actually move the ball with speed and direction
-$("#ball").css({
-"left" : ball.x,
-"top" : ball.y
-});
+$("#ball").css({"left" : ball.x,"top" : ball.y});
 }
