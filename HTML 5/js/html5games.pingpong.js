@@ -7,6 +7,11 @@ var KEY = {
 
 var pingpong = {}
 pingpong.pressedKeys = [];
+pingpong.pressedKeysPlayer1 = {
+	get value() {
+		return pingpong.pressedKeys;
+	}
+}
 
 pingpong.ball = {
 speed: 2,
@@ -34,6 +39,29 @@ $(function(){
 function gameloop() {
 	moveBall();
 	movePaddles();
+	outputKeyPressed();
+}
+
+function outputKeyPressed() {
+	if (pingpong.pressedKeysPlayer1[KEY.UP]) { // arrow-up
+		var text = $("#textArea").val() + "UP ";		
+		$("#textArea").val(text);
+	}
+
+	if (pingpong.pressedKeys[KEY.DOWN]) { // arrow-down
+		var text = $("#textArea").val() + "DOWN ";		
+		$("#textArea").val(text);
+	}
+
+	if (pingpong.pressedKeys[KEY.W]) { // w
+		var text = $("#textArea").val() + "W ";		
+		$("#textArea").val(text);
+	}
+
+	if (pingpong.pressedKeys[KEY.S]) { // s
+		var text = $("#textArea").val() + "S ";		
+		$("#textArea").val(text);
+	}
 }
 
 function movePaddles() {

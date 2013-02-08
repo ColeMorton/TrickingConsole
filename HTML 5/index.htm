@@ -2,65 +2,42 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Ping Pong</title>
+<title>HTML 5</title>
 
-<!-- Bootstrap -->
 <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<style>
-#playground{
-background: #e0ffe0 url(images/pixel_grid.jpg);
-width: 400px;
-height: 200px;
-position: relative;
-overflow: hidden;
-}
-#ball {
-background: #fbb;
-position: absolute;
-width: 20px;
-height: 20px;
-left: 150px;
-top: 100px;
-border-radius: 10px;
-}
-.paddle {
-background: #bbf;
-left: 50px;
-top: 70px;
-position: absolute;
-width: 30px;
-height: 70px;
-}
-#paddleB {
-left: 320px;
-}
-</style>
+<link href="pongstyle.css" rel="stylesheet">
 
 </head>
 <body>
 <header>
-<h1>Ping Pong</h1>
+<h1></h1>
 </header>
 
-<div id="game">
-	<div id="playground">
+<div class="row" id="game">
+
+	<div class="span5" id="playground">
 		<div id="paddleA" class="paddle"></div>
 		<div id="paddleB" class="paddle"></div>
 		<div id="ball"></div>
 	</div>
+	
+	<div class="span5">
+		<textarea id="textArea" rows"6" style="height: 400px;">Button Input:</textarea>
+	</div>
+	
 </div>
 
+<!--
 <div>
-	<button class="btn btn-success" type="button">Default button</button>
-</div>
+	<button class="btn btn-success" type="button">Button Content</button></div>
 
 <div class="progress progress-striped active">
   <div class="bar" style="width: 40%;"></div>
 </div>
 
+-->
+
 <footer>
-	This is an example of creating a Ping Pong Game.
 </footer>
 
 <script src="js/jquery-1.8.2.min.js"></script>
