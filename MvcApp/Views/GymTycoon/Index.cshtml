@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_BootstrapLayout.cshtml";
+}
+
+<h2>Gym Tycoon</h2>
+
+@RenderPage("_Gyms.cshtml")
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span2">
+            <ul class="nav nav-list">
+                <li class="nav-header">Menu</li>
+                <li class="active"><a href="#">Home</a></li>
+                <li class="disabled"><a href="#">Tricks</a></li>
+                <li><a href="#">Library</a></li>
+            </ul>
+        </div>
+        <div class="span6">
+            Placeholder
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/codebehind.js"></script>
+
