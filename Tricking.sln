@@ -7,6 +7,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricking.Tests", "Tests\Tri
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricking.Mvc", "MvcApp\Tricking.Mvc.csproj", "{E951708F-8110-465D-81CE-5CC7775FB719}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "HTMLGames", "http://localhost:47582", "{54672419-FDE1-4F7E-890A-38A74DFB77E9}"
+	ProjectSection(WebsiteProperties) = preProject
+		UseIISExpress = "true"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_47582"
+		Debug.AspNetCompiler.PhysicalPath = "HTMLGames\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_47582\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_47582"
+		Release.AspNetCompiler.PhysicalPath = "HTMLGames\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_47582\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		SlnRelativePath = "HTMLGames\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +47,10 @@ Global
 		{E951708F-8110-465D-81CE-5CC7775FB719}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E951708F-8110-465D-81CE-5CC7775FB719}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E951708F-8110-465D-81CE-5CC7775FB719}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54672419-FDE1-4F7E-890A-38A74DFB77E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54672419-FDE1-4F7E-890A-38A74DFB77E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54672419-FDE1-4F7E-890A-38A74DFB77E9}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{54672419-FDE1-4F7E-890A-38A74DFB77E9}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
