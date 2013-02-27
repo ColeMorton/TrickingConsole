@@ -1,6 +1,37 @@
-﻿@{
+﻿<html lang="en">
+
+@{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New Gym</h2>
+<head>
+    <title>New Gym<</title>
+
+    <link rel="stylesheet" href="~/Styles/StyleSheet.css" />
+</head>
+
+<body>
+       
+    <div class="row">
+
+        <canvas id="worldMapCanvas">
+            Sorry, your web browser does not support Canvas content.
+        </canvas>
+
+    </div>
+    
+    <div class="row">
+        
+        <span class="badge badge-success" id="xCoordinate">Here</span>
+        <span class="badge badge-important" id="yCoordinate">There</span>        
+
+    </div>
+
+</body>
+    
+
+<script src="~/Scripts/jquery-1.9.1.min.js"></script>
+<script src="~/Scripts/JavaScript.js"></script>
+    
+</html>
