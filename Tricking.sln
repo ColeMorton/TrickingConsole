@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricking.Domain", "Tricking\Tricking.Domain.csproj", "{E5AAC082-48C6-4DD2-B45D-7FB7A8573F52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricking.Tests", "Tests\Tricking.Tests.csproj", "{D053DEF3-122A-4DD4-8421-27B9AF57B6CA}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6F8BE073-7127-4DAB-9B4B-B9AA564ACCCE} = {6F8BE073-7127-4DAB-9B4B-B9AA564ACCCE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricking.Mvc", "MvcApp\Tricking.Mvc.csproj", "{E951708F-8110-465D-81CE-5CC7775FB719}"
 EndProject
@@ -30,6 +33,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "HTMLGames", "http://localho
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymTycoon", "GymTycoon\GymTycoon.csproj", "{122AB475-2073-40B9-AC47-FC40E0B93C13}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6F8BE073-7127-4DAB-9B4B-B9AA564ACCCE} = {6F8BE073-7127-4DAB-9B4B-B9AA564ACCCE}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tricking.Database", "Tricking.Database\Tricking.Database.csproj", "{6F8BE073-7127-4DAB-9B4B-B9AA564ACCCE}"
 EndProject

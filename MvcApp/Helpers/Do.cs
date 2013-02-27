@@ -1,5 +1,5 @@
 using System.Linq;
-using Tricking.Mvc.Infrastructure;
+using Tricking.Database;
 
 namespace Tricking.Mvc.Helpers
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
+using Tricking.Database;
 using Tricking.Domain;
-using Tricking.Mvc.Infrastructure;
 
 namespace Tricking.Mvc.Helpers
 {
@@ -32,7 +32,7 @@ namespace Tricking.Mvc.Helpers
                 if (string.IsNullOrEmpty(input) || input == "exit")
                     Environment.Exit(1);
 
-            } while (!Queryable.Contains(trickers.Select(t => t.Name.ToLower()), input));
+            } while (!trickers.Select(t => t.Name.ToLower()).Contains(input));
 
             var trickerSelected = context.Trickers.Single(t => t.Name.ToLower() == input);
             Console.WriteLine("You selected: " + trickerSelected.Name);

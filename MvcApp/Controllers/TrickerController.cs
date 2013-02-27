@@ -1,21 +1,21 @@
 ﻿using System.Data;
 using System.Linq;
 using System.Web.Mvc;
+using Tricking.Database;
 using Tricking.Domain;
-using Tricking.Mvc.Infrastructure;
 
 namespace Tricking.Mvc.Controllers
 {
     public class TrickerController : Controller
     {
-        private TrickingContext db = new TrickingContext();
+        private readonly TrickingContext _db = new TrickingContext();
 
         //
         // GET: /Tricker/
 
         public ActionResult Index()
         {
-            return View(db.Trickers.ToList());
+            return View(_db.Trickers.ToList());
         }
 
         //
@@ -23,7 +23,7 @@ namespace Tricking.Mvc.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Tricker tricker = db.Trickers.Find(id);
+            Tricker tricker = _db.Trickers.Find(id);
             if (tricker == null)
             {
                 return HttpNotFound();
@@ -47,8 +47,8 @@ namespace Tricking.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Trickers.Add(tricker);
-                db.SaveChanges();
+                _db.Trickers.Add(tricker);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -60,7 +60,7 @@ namespace Tricking.Mvc.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Tricker tricker = db.Trickers.Find(id);
+            Tricker tricker = _db.Trickers.Find(id);
             if (tricker == null)
             {
                 return HttpNotFound();
@@ -76,8 +76,8 @@ namespace Tricking.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tricker).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(tricker).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(tricker);
@@ -88,7 +88,7 @@ namespace Tricking.Mvc.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Tricker tricker = db.Trickers.Find(id);
+            Tricker tricker = _db.Trickers.Find(id);
             if (tricker == null)
             {
                 return HttpNotFound();
@@ -102,15 +102,15 @@ namespace Tricking.Mvc.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tricker tricker = db.Trickers.Find(id);
-            db.Trickers.Remove(tricker);
-            db.SaveChanges();
+            Tricker tricker = _db.Trickers.Find(id);
+            _db.Trickers.Remove(tricker);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

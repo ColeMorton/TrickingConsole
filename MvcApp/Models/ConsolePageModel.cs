@@ -2,8 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
-using Tricking.Domain;
-using Tricking.Mvc.Infrastructure;
+using Tricking.Database;
 
 namespace Tricking.Mvc.Models
 {

@@ -1,8 +1,7 @@
-﻿using System.Data.Entity.Migrations;
+using System.Data.Entity.Migrations;
 using Tricking.Domain;
-using Tricking.Mvc.Infrastructure;
 
-namespace Tricking.Mvc.Migrations
+namespace Tricking.Database.Migrations
 {
     class Seed
     {

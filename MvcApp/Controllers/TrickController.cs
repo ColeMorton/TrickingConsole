@@ -1,21 +1,21 @@
 ﻿using System.Data;
 using System.Linq;
 using System.Web.Mvc;
+using Tricking.Database;
 using Tricking.Domain;
-using Tricking.Mvc.Infrastructure;
 
 namespace Tricking.Mvc.Controllers
 {
     public class TrickController : Controller
     {
-        private TrickingContext db = new TrickingContext();
+        private readonly TrickingContext _db = new TrickingContext();
 
         //
         // GET: /Trick/
 
         public ActionResult Index()
         {
-            return View(db.Tricks.ToList());
+            return View(_db.Tricks.ToList());
         }
 
         //
@@ -23,7 +23,7 @@ namespace Tricking.Mvc.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Trick trick = db.Tricks.Find(id);
+            Trick trick = _db.Tricks.Find(id);
             if (trick == null)
             {
                 return HttpNotFound();
@@ -47,8 +47,8 @@ namespace Tricking.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Tricks.Add(trick);
-                db.SaveChanges();
+                _db.Tricks.Add(trick);
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -60,7 +60,7 @@ namespace Tricking.Mvc.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Trick trick = db.Tricks.Find(id);
+            Trick trick = _db.Tricks.Find(id);
             if (trick == null)
             {
                 return HttpNotFound();
@@ -76,8 +76,8 @@ namespace Tricking.Mvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(trick).State = EntityState.Modified;
-                db.SaveChanges();
+                _db.Entry(trick).State = EntityState.Modified;
+                _db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(trick);
@@ -88,7 +88,7 @@ namespace Tricking.Mvc.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Trick trick = db.Tricks.Find(id);
+            Trick trick = _db.Tricks.Find(id);
             if (trick == null)
             {
                 return HttpNotFound();
@@ -102,15 +102,15 @@ namespace Tricking.Mvc.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Trick trick = db.Tricks.Find(id);
-            db.Tricks.Remove(trick);
-            db.SaveChanges();
+            Trick trick = _db.Tricks.Find(id);
+            _db.Tricks.Remove(trick);
+            _db.SaveChanges();
             return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
         {
-            db.Dispose();
+            _db.Dispose();
             base.Dispose(disposing);
         }
     }

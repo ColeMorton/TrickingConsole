@@ -8,6 +8,10 @@ namespace Tricking.Database
     {
         static void Main(string[] args)
         {
+            using (var db = new TrickingContext())
+            {
+                
+            }
         }
     }
 }

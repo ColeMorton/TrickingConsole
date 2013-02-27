@@ -60,7 +60,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITrickingContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Trick.cs" />
     <Compile Include="Tricker.cs" />

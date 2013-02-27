@@ -2,7 +2,7 @@ using System.Data.Entity;
 using System.Linq;
 using Tricking.Domain;
 
-namespace Tricking.Mvc.Infrastructure
+namespace Tricking.Database
 {
     public class TrickingContext : DbContext, ITrickingContext
     {

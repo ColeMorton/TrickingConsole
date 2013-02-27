@@ -1,6 +1,7 @@
 using System.Linq;
+using Tricking.Domain;
 
-namespace Tricking.Domain
+namespace Tricking.Database
 {
     public interface ITrickingContext
     {

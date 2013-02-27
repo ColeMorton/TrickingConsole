@@ -1,7 +1,6 @@
 using System.Data.Entity.Migrations;
-using Tricking.Mvc.Infrastructure;
 
-namespace Tricking.Mvc.Migrations
+namespace Tricking.Database.Migrations
 {
     internal sealed class Configuration : DbMigrationsConfiguration<TrickingContext>
     {
