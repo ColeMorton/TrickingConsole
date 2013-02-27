@@ -60,7 +60,8 @@ function gameloop() {
     clear(ctx);
 
     // draw all remembered line
-    for (var i = 0; i < untangleGame.lines.length; i++) {
+    var i;
+    for (i = 0; i < untangleGame.lines.length; i++) {
         var line = untangleGame.lines[i];
         var startPoint = line.startPoint;
         var endPoint = line.endPoint;
@@ -69,26 +70,9 @@ function gameloop() {
     }
 
     // draw all remembered circles
-    for (var i = 0; i < untangleGame.circles.length; i++) {
+    for (i = 0; i < untangleGame.circles.length; i++) {
         var circle = untangleGame.circles[i];
         drawCircle(ctx, circle.x, circle.y, circle.radius);
-    }
-}
-
-function SetCircle(e) {
-    var canvasPosition = $(this).offset();
-    var mouseX = e.offsetX || 0;
-    var mouseY = e.offsetY || 0;
-
-    for (var i = 0; i < untangleGame.circles.length; i++) {
-        var circleX = untangleGame.circles[i].x;
-        var circleY = untangleGame.circles[i].y;
-        var radius = untangleGame.circles[i].radius;
-
-        if (Math.pow(mouseX - circleX, 2) + Math.pow(mouseY - circleY, 2) < Math.pow(radius, 2)) {
-            untangleGame.targetCircle = i;
-            break;
-        }
     }
 }
 
@@ -114,8 +98,19 @@ $(function () {
     // we find if the mouse down position is on any circle
     // and set that circle as target dragging circle.
     $("#game").mousedown(function (e) {
-        if (!buttonClicked) {
-            SetCircle(e);
+        var canvasPosition = $(this).offset();
+        var mouseX = e.offsetX || 0;
+        var mouseY = e.offsetY || 0;
+
+        for (var i = 0; i < untangleGame.circles.length; i++) {
+            var circleX = untangleGame.circles[i].x;
+            var circleY = untangleGame.circles[i].y;
+            var radius = untangleGame.circles[i].radius;
+
+            if (Math.pow(mouseX - circleX, 2) + Math.pow(mouseY - circleY, 2) < Math.pow(radius, 2)) {
+                untangleGame.targetCircle = i;
+                break;
+            }
         }
     });
 
