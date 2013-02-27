@@ -3,9 +3,9 @@ using Tricking.Domain;
 
 namespace Tricking.Database.Migrations
 {
-    class Seed
+    public static class Seed
     {
-        public Seed(TrickingContext context)
+        public static void Do(TrickingContext context)
         {
             context.TrickTypes.AddOrUpdate(t => t.Id,
                 new TrickType { Id = 1, Name = "Flip" },

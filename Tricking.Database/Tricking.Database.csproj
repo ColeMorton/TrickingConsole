@@ -49,7 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ITrickingContext.cs" />
+    <Compile Include="Migrations\201302270432153_InitialCreate.cs" />
+    <Compile Include="Migrations\201302270432153_InitialCreate.Designer.cs">
+      <DependentUpon>201302270432153_InitialCreate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\Seed.cs" />
     <Compile Include="Program.cs" />
@@ -65,6 +68,11 @@
       <Project>{e5aac082-48c6-4dd2-b45d-7fb7a8573f52}</Project>
       <Name>Tricking.Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201302270432153_InitialCreate.resx">
+      <DependentUpon>201302270432153_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

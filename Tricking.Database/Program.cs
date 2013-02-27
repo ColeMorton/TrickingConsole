@@ -2,16 +2,17 @@
 //Code first migrations using powershell
 //http://msdn.microsoft.com/en-US/data/jj591621
 
+using System.Data.Entity.Migrations;
+using Tricking.Database.Migrations;
+
 namespace Tricking.Database
 {
     class Program
     {
         static void Main(string[] args)
         {
-            using (var db = new TrickingContext())
-            {
-                
-            }
+            var dbMigrator = new DbMigrator(new Configuration());
+            dbMigrator.Update(null); 
         }
     }
 }
