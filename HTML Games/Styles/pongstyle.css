@@ -1,6 +1,6 @@
 #playground
 {
-    background: #e0ffe0 url(~/Content/Images/pixel_grid.jpg);
+    background: #e0ffe0 url('../Content/Images/pixel_grid.jpg');
     width: 400px;
     height: 200px;
     position: relative;
