@@ -7,11 +7,6 @@
     overflow: hidden;
 }
 
-#textArea
-{
-    width: 400px;
-    height: 200px;
-}
 
 #ball
 {
@@ -19,6 +14,7 @@
     position: absolute;
     width: 20px;
     height: 20px;
+     
     left: 150px;
     top: 100px;
     border-radius: 10px;
@@ -37,4 +33,11 @@
 #paddleB
 {
     left: 320px;
+}
+
+#progressBar {
+    width: 100%;
+    -webkit-transition:width 1s;
+    transition:width 1s;
+    -webkit-transition-timing-function: ease-out;
 }

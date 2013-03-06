@@ -1,27 +1,9 @@
-var KEY = {
-    UP: 38,
-    DOWN: 40,
-    W: 87,
-    S: 83,
-    ONE: 49,
-    TWO: 50,
-    THREE: 51,
-    FOUR: 52,
-    FIVE: 53,
-    SIX: 54,
-    SEVEN: 55,
-    EIGHT: 56,
-    NINE: 57,
-};
-
 var GAMESPEED = 30;
-var PROGRESSTIMERMAX = 500;
+var PROGRESSTIMER = 2000;
 var REFRESHRATE = 60;
-
-var progressBar = 100;
+var NEWLINE = "\n";
 
 var pingpong = {};
-pingpong.pressedKeys = [];
 pingpong.gameSpeed = GAMESPEED;
 
 pingpong.ball = {
@@ -35,109 +17,58 @@ pingpong.ball = {
 $(function () {
 
     // set interval to call gameloop every x milliseconds
-    setGameSpeed();
+    pingpong.timer = setInterval(gameloop, pingpong.gameSpeed);
+    pingpong.refreshRateTimer = setInterval(refreshScreen, 1000 / REFRESHRATE);
+    pingpong.progressBartimer = setInterval(function () { $('#progressBar').css('width', '1%'); }, PROGRESSTIMER);
 
     // mark down what key is down and up into an array called "pressedKeys"
     $(document).keydown(function (e) {
-        pingpong.pressedKeys[e.which] = true;
+        keyLogger.pressedKeys[e.which] = true;
     });
 
     $(document).keyup(function (e) {
-        pingpong.pressedKeys[e.which] = false;
+        keyLogger.pressedKeys[e.which] = false;
     });
-
-    var timer = setInterval(function () { progressBar -= 1; }, PROGRESSTIMERMAX / 100);
 });
 
 function gameloop() {
     moveBall();
     movePaddles();
-    //setGameSpeed();
-    //outputKeyPressed();
 }
 
 function refreshScreen() {
     // actually move the ball with speed and direction
     $("#ball").css({ "left": pingpong.ball.x, "top": pingpong.ball.y });
-
-    moveProgressBar();
+    outputKeysPressed();
 }
-
-function moveProgressBar() {
-    
-    if (progressBar > 1) {
-        $('#progressBar').css('width', progressBar + '%');
-
-        var text = $('#textArea').val();
-        text += " " + progressBar;
-        $('#textArea').val(text);
-    }
-}
-
-function setGameSpeed() {
-
-    //if (pingpong.pressedKeys[KEY.ONE]) { // arrow-up
-    //    pingpong.gameSpeed = 22;
-    //}
-
-    //if (pingpong.pressedKeys[KEY.NINE]) { // arrow-up
-    //    pingpong.gameSpeed = 8;
-    //}
-
-    pingpong.timer = setInterval(gameloop, pingpong.gameSpeed);
-    pingpong.refreshRateTime = setInterval(refreshScreen, 1000 / REFRESHRATE);
-}
-
-//function outputKeyPressed() {
-//    var text;
-
-//    if (pingpong.pressedKeys[KEY.UP]) { // arrow-up
-//        text = $("#textArea").val() + "UP|";
-//        $("#textArea").val(text);
-//    }
-
-//    if (pingpong.pressedKeys[KEY.DOWN]) { // arrow-down
-//        text = $("#textArea").val() + "DOWN|";
-//        $("#textArea").val(text);
-//    }
-
-//    if (pingpong.pressedKeys[KEY.W]) { // w
-//        text = $("#textArea").val() + "W|";
-//        $("#textArea").val(text);
-//    }
-
-//    if (pingpong.pressedKeys[KEY.S]) { // s
-//        text = $("#textArea").val() + "S|";
-//        $("#textArea").val(text);
-//    }
-//}
 
 function movePaddles() {
     // use our custom timer to continuously check if a key is pressed.
     var top;
+    var pressedKeys = keyLogger.pressedKeys;
 
-    if (pingpong.pressedKeys[KEY.UP]) { // arrow-up
+    if (pressedKeys[KEY.UP]) { // arrow-up
 
         // move the paddle B up 5 pixels
         top = parseInt($("#paddleB").css("top"));
         $("#paddleB").css("top", top - 5);
     }
 
-    if (pingpong.pressedKeys[KEY.DOWN]) { // arrow-down
+    if (pressedKeys[KEY.DOWN]) { // arrow-down
 
         // move the paddle B down 5 pixels
         top = parseInt($("#paddleB").css("top"));
         $("#paddleB").css("top", top + 5);
     }
 
-    if (pingpong.pressedKeys[KEY.W]) { // w
+    if (pressedKeys[KEY.W]) { // w
 
         // move the paddle A up 5 pixels
         top = parseInt($("#paddleA").css("top"));
         $("#paddleA").css("top", top - 5);
     }
 
-    if (pingpong.pressedKeys[KEY.S]) { // s
+    if (pressedKeys[KEY.S]) { // s
 
         // move the paddle A down 5 pixels
         top = parseInt($("#paddleA").css("top"));
