@@ -7,7 +7,6 @@
 
 <head>
     <title>New Gym<</title>
-
     <link rel="stylesheet" href="~/Styles/StyleSheet.css" />
 </head>
 
@@ -15,7 +14,8 @@
 
     <div class="row">
 
-        <canvas id="worldMapCanvas">Sorry, your web browser does not support Canvas content.
+        <canvas id="game">
+            Sorry, your web browser does not support Canvas content.
         </canvas>
 
     </div>
@@ -26,11 +26,14 @@
         <span class="badge badge-important" id="yCoordinate">There</span>
 
     </div>
+    
+    <div class="row-fluid">
+        <iframe class="span12" id="iFrame" src="http://localhost/KeyLogger.htm"></iframe>
+    </div>
 
 </body>
 
-
-<script src="~/Scripts/jquery-1.9.1.min.js"></script>
-<script src="~/Scripts/JavaScript.js"></script>
-
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="http://localhost/scripts/custom.keylogger.js"></script>
+    <script src="~/Scripts/NewGym.js"></script>
 </html>

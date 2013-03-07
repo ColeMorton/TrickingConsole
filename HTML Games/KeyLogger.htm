@@ -5,31 +5,22 @@
     <title>Key Logger</title>
 
     <link href="Content/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        #textArea
-        {
-            width: 300px;
-        }
-
-        .alert
-        {
-            width: 300px;
-        }
-
-        #textArea
-        {
-            width: 400px;
-            height: 200px;
-        }
-    </style>
 </head>
 <body>
     <header>
     </header>
 
-    <div class="alert alert-success">
-        <textarea id="textArea"></textarea>
+    <div class="row">
+        <div class="span2">
+            Key Pressed:
+            <span id="keyPressed" class="label label-success">A</span>        
+        </div>
+        <div class="span2">
+            <span id="mousePosX" class="label label-success">B</span>        
+        </div>
+        <div class="span2">
+            <span id="mousePosY" class="label label-success">C</span>        
+        </div>
     </div>
 
     <footer>
@@ -38,7 +29,7 @@
     <script src="Scripts/jquery-1.9.1.min.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="Scripts/custom.keylogger.js"></script>
+    <script src="http://localhost/scripts/custom.keylogger.js"></script>
 
 </body>
 </html>

@@ -23,11 +23,11 @@ $(function () {
 
     // mark down what key is down and up into an array called "pressedKeys"
     $(document).keydown(function (e) {
-        keyLogger.pressedKeys[e.which] = true;
+        keyLogger.keydown(e);
     });
 
     $(document).keyup(function (e) {
-        keyLogger.pressedKeys[e.which] = false;
+        keyLogger.keyup(e);
     });
 });
 
@@ -39,7 +39,6 @@ function gameloop() {
 function refreshScreen() {
     // actually move the ball with speed and direction
     $("#ball").css({ "left": pingpong.ball.x, "top": pingpong.ball.y });
-    outputKeysPressed();
 }
 
 function movePaddles() {

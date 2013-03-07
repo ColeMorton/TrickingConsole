@@ -79,7 +79,6 @@ function gameloop() {
 $(function () {
     var canvas = document.getElementById('game');
     var ctx = canvas.getContext('2d');
-    var circleRadius = 10;
     var width = canvas.width;
     var height = canvas.height;
 
@@ -98,7 +97,6 @@ $(function () {
     // we find if the mouse down position is on any circle
     // and set that circle as target dragging circle.
     $("#game").mousedown(function (e) {
-        var canvasPosition = $(this).offset();
         var mouseX = e.offsetX || 0;
         var mouseY = e.offsetY || 0;
 
@@ -117,7 +115,6 @@ $(function () {
     // we move the target dragging circle when the mouse is moving
     $("#game").mousemove(function (e) {
         if (untangleGame.targetCircle != undefined) {
-            var canvasPosition = $(this).offset();
             var mouseX = e.offsetX || 0;
             var mouseY = e.offsetY || 0;
             var radius = untangleGame.circles[untangleGame.targetCircle].radius;
