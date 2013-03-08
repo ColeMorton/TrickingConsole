@@ -1,7 +1,7 @@
 ﻿var locations = [
     { x: 10, y: 10, r: 10 },
     { x: 200, y: 200, r: 10 },
-    { x: 300, y: 300, r: 300 },
+    { x: 300, y: 300, r: 10 },
     { x: 975, y: 550, r: 10 }];
 
 var canvas = document.getElementById('game');
@@ -20,9 +20,9 @@ var mouseX = 0;
 var mouseY = 0;
 var targetLocation = undefined;
 
-function newGym() {
+function init() {
     if (!bgLoaded) {
-        setTimeout('newGym()', 100);
+        setTimeout('init()', 100);
         return;
     }
     
@@ -44,8 +44,18 @@ function addListeners() {
         getLocationSelected();
     });
     
+    $("#game").mousemove(function (e) {
+        mouseX = e.offsetX || 0;
+        mouseY = e.offsetY || 0;
+        mousemove(e);
+    });
+    
     $(document).keydown(function (e) {
-        keylogger.keydown(e);
+        keydown(e);
+    });
+    
+    $(document).keyup(function (e) {
+        keyup(e);
     });
 }
 

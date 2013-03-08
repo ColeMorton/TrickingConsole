@@ -23,11 +23,11 @@ $(function () {
 
     // mark down what key is down and up into an array called "pressedKeys"
     $(document).keydown(function (e) {
-        keyLogger.keydown(e);
+        keydown(e);
     });
 
     $(document).keyup(function (e) {
-        keyLogger.keyup(e);
+        keyup(e);
     });
 });
 

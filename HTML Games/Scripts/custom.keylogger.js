@@ -27,45 +27,54 @@ var KEY = {
 
 var NEWLINE = "\n";
 
-var keyLogger = {};
-keyLogger.pressedKeys = [];
-keyLogger.allKeysPressed = "";
-keyLogger.lastKeyPressed = "";
-keyLogger.mousePosX = 0;
-keyLogger.mousePosY = 0;
+var keylogger = {
+    pressedKeys: [],
+    allKeysPressed: "",
+    lastKeyPressed: "",
+    mousePosX: 0,
+    mousePosY: 0,
+    canvas: $("#canvasoutput")[0],
+    context: null
+};
 
-function outputKeyDown() {
-    $("#iFrame").contents().find("#keyPressed").html(keyLogger.lastKeyPressed);
-    $("#iFrame").contents().find("#mousePosX").html(keyLogger.lastKeyPressed);
-    $("#iFrame").contents().find("#mousePosY").html(keyLogger.lastKeyPressed);
+$(function () {
+    keylogger.context = keylogger.canvas.getContext("2d");
+    keylogger.context.font = '18pt Calibri';
+    keylogger.context.fillStyle = 'black';
+    context.fillText(message, 10, 25);
+});
+
+function mousemove(e) {
+    keylogger.context.mousePosX = e.clientX;
+    keylogger.context.mousePosY = e.clientY;
 }
 
 function keydown(e) {
-    keyLogger.pressedKeys[e.which] = true;
-    var pressedKeys = keyLogger.pressedKeys;
+    keylogger.pressedKeys[e.which] = true;
+    var pressedKeys = keylogger.pressedKeys;
 
     if (pressedKeys[KEY.UP]) { // up
-        keyLogger.lastKeyPressed = "UP";
-        keyLogger.allKeysPressed += keyLogger.lastKeyPressed + NEWLINE;
+        keylogger.lastKeyPressed = "UP";
+        keylogger.allKeysPressed += keylogger.lastKeyPressed + NEWLINE;
     }
 
     if (pressedKeys[KEY.DOWN]) { // down
-        keyLogger.lastKeyPressed = "DOWN";
-        keyLogger.allKeysPressed += keyLogger.lastKeyPressed + NEWLINE;
+        keylogger.lastKeyPressed = "DOWN";
+        keylogger.allKeysPressed += keylogger.lastKeyPressed + NEWLINE;
     }
 
     if (pressedKeys[KEY.W]) { // w
-        keyLogger.lastKeyPressed = "W";
-        keyLogger.allKeysPressed += keyLogger.lastKeyPressed + NEWLINE;
+        keylogger.lastKeyPressed = "W";
+        keylogger.allKeysPressed += keylogger.lastKeyPressed + NEWLINE;
     }
 
     if (pressedKeys[KEY.S]) { // s
-        keyLogger.lastKeyPressed = "S";
-        keyLogger.allKeysPressed += keyLogger.lastKeyPressed + NEWLINE;
+        keylogger.lastKeyPressed = "S";
+        keylogger.allKeysPressed += keylogger.lastKeyPressed + NEWLINE;
     }
 }
 
 function keyup(e) {
-    keyLogger.pressedKeys[e.which] = true;
-    keyLogger.lastKeyPressed = "";
+    keylogger.pressedKeys[e.which] = false;
+    keylogger.lastKeyPressed = "";
 }
