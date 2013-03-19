@@ -1,7 +1,6 @@
-function Circle(x, y, radius) {
+function Circle(x, y) {
     this.x = x;
     this.y = y;
-    this.radius = radius;
 }
 
 function Line(startPoint, endPoint, thickness) {
@@ -12,10 +11,12 @@ function Line(startPoint, endPoint, thickness) {
 
 var untangleGame = {
     circles: [],
+    circleRadius: 10,
     thinLineThickness: 1,
     boldLineThickness: 5,
     lines: [],
     currentLevel: 0,
+    progressPercentage: 0
 };
 
 untangleGame.levels =
@@ -77,11 +78,19 @@ function drawLine(ctx, x1, y1, x2, y2, thickness) {
     ctx.stroke();
 }
 
-function drawCircle(ctx, x, y, radius) {
-    ctx.fillStyle = "rgba(200, 200, 100, .9)";
+function drawCircle(ctx, x, y) {
+    // prepare the radial gradients fill style
+    var circleGradient = ctx.createRadialGradient(x - 3, y - 3, 1, x, y, untangleGame.circleRadius);
+    circleGradient.addColorStop(0, "#fff");
+    circleGradient.addColorStop(1, "#cc0");
+    ctx.fillStyle = circleGradient;
+    
+    // draw path
     ctx.beginPath();
-    ctx.arc(x, y, radius, 0, Math.PI * 2, true);
+    ctx.arc(x, y, untangleGame.circleRadius, 0, Math.PI * 2, true);
     ctx.closePath();
+    
+    // actually fill the circle
     ctx.fill();
 }
 
@@ -122,9 +131,10 @@ function updateLevelProgress() {
             progress++;
         }
     }
-    var progressPercentage = Math.floor(progress / untangleGame.lines.length * 100);
-    $("#progress").html(progressPercentage);
-    $('#progressBar').css('width', progressPercentage + '%');
+
+    untangleGame.progressPercentage = Math.floor(progress / untangleGame.lines.length * 100);
+    $("#progress").html(untangleGame.progressPercentage);
+    $('#progressBar').css('width', untangleGame.progressPercentage + '%');
 
     // display the current level
     $("#level").html(untangleGame.currentLevel);
@@ -137,6 +147,15 @@ function gameloop() {
 
     // clear the canvas before re-drawing.
     clear(ctx);
+    
+    // draw background
+    var bgGradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
+    bgGradient.addColorStop(0, "#000000");
+    bgGradient.addColorStop(1, "#555555");
+    ctx.fillStyle = bgGradient;
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    drawText(ctx);
 
     // draw all remembered line
     var i;
@@ -151,8 +170,21 @@ function gameloop() {
     // draw all remembered circles
     for (i = 0; i < untangleGame.circles.length; i++) {
         var circle = untangleGame.circles[i];
-        drawCircle(ctx, circle.x, circle.y, circle.radius);
+        drawCircle(ctx, circle.x, circle.y);
     }
+}
+
+function drawText(ctx) {
+    // draw the title text
+    ctx.font = "26px 'WellFleet'";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("Untangle Game", ctx.canvas.width / 2, 50);
+
+    // draw the level progress text
+    ctx.textAlign = "left";
+    ctx.textBaseline = "bottom";
+    ctx.fillText("Puzzle " + untangleGame.progressPercentage + "%", 20, ctx.canvas.height - 5);
 }
 
 $(function () {
@@ -170,9 +202,8 @@ $(function () {
         for (var i = 0; i < untangleGame.circles.length; i++) {
             var circleX = untangleGame.circles[i].x;
             var circleY = untangleGame.circles[i].y;
-            var radius = untangleGame.circles[i].radius;
 
-            if (Math.pow(mouseX - circleX, 2) + Math.pow(mouseY - circleY, 2) < Math.pow(radius, 2)) {
+            if (Math.pow(mouseX - circleX, 2) + Math.pow(mouseY - circleY, 2) < Math.pow(untangleGame.circleRadius, 2)) {
                 untangleGame.targetCircle = i;
                 break;
             }
@@ -184,8 +215,7 @@ $(function () {
         if (untangleGame.targetCircle != undefined) {
             var mouseX = e.offsetX || 0;
             var mouseY = e.offsetY || 0;
-            var radius = untangleGame.circles[untangleGame.targetCircle].radius;
-            untangleGame.circles[untangleGame.targetCircle] = new Circle(mouseX, mouseY, radius);
+            untangleGame.circles[untangleGame.targetCircle] = new Circle(mouseX, mouseY, untangleGame.circleRadius);
         }
         connectCircles();
         updateLineIntersection();
