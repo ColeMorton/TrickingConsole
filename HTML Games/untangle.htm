@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <title>Drawing Circles in Canvas</title>
+    <link href="Content/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="Styles/untanglestyle.css" />
 </head>
 
@@ -12,17 +13,23 @@
         <h1>Untangle Puzzle Game in Canvas</h1>
     </header>
 
-    <canvas id="game" width="768" height="400">
-        <p>Puzzle 
-            <span id="level">0</span>, Completeness:
-            <span id="progress">0</span>%
-        </p>
-        Sorry, your web browser does not support Canvas content.
+    <canvas id="game" width="768" height="400">Sorry, your web browser does not support Canvas content.
     </canvas>
 
-    <canvas id="myCanvas" width="578" height="200"></canvas>
+    <p>
+        Puzzle 
+        <span id="level">0</span>, Completeness:
+        <span id="progress">0</span>%
+    </p>
+    
+        <div class="progress" style="width:768px">
+            <div class="bar" id="progressBar"></div>
+        </div>
 
+    <canvas id="myCanvas" width="578" height="200"></canvas>
+    
+    <script src="Scripts/bootstrap.min.js"></script>
     <script src="Scripts/jquery-1.9.1.min.js"></script>
-    <script src="Scripts/html5games.untangle.js"></script> 
+    <script src="Scripts/html5games.untangle.js"></script>
 </body>
 </html>

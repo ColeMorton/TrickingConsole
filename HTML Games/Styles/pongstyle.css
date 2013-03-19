@@ -36,7 +36,7 @@
 }
 
 #progressBar {
-    width: 100%;
+    width: 0%;
     -webkit-transition:width 1s;
     transition:width 1s;
     -webkit-transition-timing-function: ease-out;

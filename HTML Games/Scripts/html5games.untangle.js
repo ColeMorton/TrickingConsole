@@ -124,6 +124,8 @@ function updateLevelProgress() {
     }
     var progressPercentage = Math.floor(progress / untangleGame.lines.length * 100);
     $("#progress").html(progressPercentage);
+    $('#progressBar').css('width', progressPercentage + '%');
+
     // display the current level
     $("#level").html(untangleGame.currentLevel);
 }
