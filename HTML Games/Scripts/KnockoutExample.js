@@ -7,10 +7,10 @@ function AppViewModel() {
         return this.firstName() + " " + this.lastName();
     }, this);
 
-    this.capitalizeLastName = function () {
+    this.capitalizeLastName = function() {
         var currentVal = this.lastName();
         this.lastName(currentVal.toUpperCase());
-    }
+    };
 }
 
 // Activates knockout.js
