@@ -5,19 +5,6 @@ UntangleGraphics.thinLineThickness = 1;
 UntangleGraphics.boldLineThickness = 5;
 UntangleGraphics.lineStrokeStyle = "#cfc";
 
-UntangleGraphics.Circle = function (x, y) {
-    "use strict";
-    this.x = x;
-    this.y = y;
-};
-
-UntangleGraphics.Line = function (startPoint, endPoint, thickness) {
-    "use strict";
-    this.startPoint = startPoint;
-    this.endPoint = endPoint;
-    this.thickness = thickness !== undefined ? thickness : UntangleGraphics.thinLineThickness;
-};
-
 UntangleGraphics.init = function (canvas) {
     "use strict";
     this.context = canvas.getContext('2d');

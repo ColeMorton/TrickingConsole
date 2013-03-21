@@ -8,6 +8,19 @@ var UntangleGame = {
     progressPercentage: 0
 };
 
+UntangleGame.Circle = function (x, y) {
+    "use strict";
+    this.x = x;
+    this.y = y;
+};
+
+UntangleGame.Line = function (startPoint, endPoint, thickness) {
+    "use strict";
+    this.startPoint = startPoint;
+    this.endPoint = endPoint;
+    this.thickness = thickness !== undefined ? thickness : UntangleGraphics.thinLineThickness;
+};
+
 var setupCurrentLevel = function() {
     "use strict";
 
@@ -15,7 +28,7 @@ var setupCurrentLevel = function() {
     var level = UntangleGame.levels[UntangleGame.currentLevel];
 
     $.each(level.circles, function(index, circle) {
-        UntangleGame.circles.push(new UntangleGraphics.Circle(circle.x, circle.y, 10));
+        UntangleGame.circles.push(new UntangleGame.Circle(circle.x, circle.y, 10));
     });
     
     connectCircles();
@@ -34,7 +47,7 @@ var connectCircles = function() {
 
         $.each(connectedPoints, function(j) {
             var endPoint = UntangleGame.circles[connectedPoints[j]];
-            UntangleGame.lines.push(new UntangleGraphics.Line(startPoint, endPoint));
+            UntangleGame.lines.push(new UntangleGame.Line(startPoint, endPoint));
         });
     });
 };
@@ -86,7 +99,7 @@ var bindUIEvents = function () {
         if (UntangleGame.targetCircle !== undefined) {
             var mouseX = e.offsetX || 0;
             var mouseY = e.offsetY || 0;
-            UntangleGame.circles[UntangleGame.targetCircle] = new UntangleGraphics.Circle(mouseX, mouseY, UntangleGame.circleRadius);
+            UntangleGame.circles[UntangleGame.targetCircle] = new UntangleGame.Circle(mouseX, mouseY, UntangleGame.circleRadius);
         }
         connectCircles();
         updateLevelProgress();
