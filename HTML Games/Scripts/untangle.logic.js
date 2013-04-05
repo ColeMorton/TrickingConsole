@@ -1,4 +1,7 @@
-UntangleLogic = {};
+UntangleLogic = {
+    graphics: UntangleGraphics,
+    boldLineThickness : 5
+};
 
 UntangleLogic.isIntersect = function (line1, line2) {
     "use strict";
@@ -24,18 +27,16 @@ UntangleLogic.isIntersect = function (line1, line2) {
         var y = (a1 * c2 - a2 * c1) / d;
 
         // check if intersection line is on both line segments
-        if ((UntangleLogic.isInBetween(line1.startPoint.x, x, line1.endPoint.x) ||
-                UntangleLogic.isInBetween(line1.startPoint.y, y, line1.endPoint.y)) &&
-            (UntangleLogic.isInBetween(line2.startPoint.x, x, line2.endPoint.x) ||
-                UntangleLogic.isInBetween(line2.startPoint.y, y, line2.endPoint.y))) {
+        if ((this.isInBetween(line1.startPoint.x, x, line1.endPoint.x) ||
+                this.isInBetween(line1.startPoint.y, y, line1.endPoint.y)) &&
+            (this.isInBetween(line2.startPoint.x, x, line2.endPoint.x) ||
+                this.isInBetween(line2.startPoint.y, y, line2.endPoint.y))) {
             return true;
         }
         return false;
     }
 };
 
-// return true if b is between a and c,
-// we exclude the result when a==b or b==c
 UntangleLogic.isInBetween = function (a, b, c) {
     "use strict";
 
@@ -62,8 +63,8 @@ UntangleLogic.updateLineIntersection = function (lines) {
             // we check if two lines are intersected,
             // and bold the line if they are.
             if (UntangleLogic.isIntersect(line1, line2)) {
-                line1.thickness = UntangleGraphics.boldLineThickness;
-                line2.thickness = UntangleGraphics.boldLineThickness;
+                UntangleLogic.graphics.lineIsBold(line1);
+                UntangleLogic.graphics.lineIsBold(line2);
             }
         }
     });
