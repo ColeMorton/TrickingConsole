@@ -1,7 +1,7 @@
-UntangleLogic = {
-    graphics: UntangleGraphics,
-    boldLineThickness : 5
-};
+UntangleLogic = {};
+
+UntangleLogic.graphics = UntangleGraphics;
+UntangleLogic.boldLineThickness = 5;
 
 UntangleLogic.isIntersect = function (line1, line2) {
     "use strict";
