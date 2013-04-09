@@ -69,3 +69,15 @@ Logic.UpdateLineIntersection = function (lines) {
         }
     });
 };
+
+Logic.FindTargetCircle = function (circles, mouseX, mouseY) {
+    "use strict";
+    
+    var result = undefined;
+    $.each(circles, function (index, circle) {
+        if (Math.pow(mouseX - circle.x, 2) + Math.pow(mouseY - circle.y, 2) < Math.pow(Logic.Graphics.circleRadius, 2)) {
+            result = index;
+        }
+    });
+    return result;
+};

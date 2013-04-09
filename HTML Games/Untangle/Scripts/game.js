@@ -12,14 +12,6 @@ $(function () {
     "use strict";
 
     UntangleGame.SetupCurrentLevel();
-    //UntangleGame.ConnectCircles();
-    UntangleGame.Logic.UpdateLineIntersection(UntangleGame.lines);
-
-    // clear the canvas before re-drawing.
-    UntangleGame.Graphics.clear();
-
-    // draw a splash screen when loading the game background
-    UntangleGame.Graphics.drawBackgroundGradient();
 
     //setup an interval to loop the game loop
     setInterval(UntangleGame.GameLoop, 30);
@@ -37,7 +29,34 @@ UntangleGame.SetupCurrentLevel = function() {
 
     // setup line data after setup the circles.
     UntangleGame.ConnectCircles();
+    
     UntangleGame.Logic.UpdateLineIntersection(UntangleGame.lines);
+};
+
+UntangleGame.GameLoop = function () {
+    "use strict";
+
+    // clear the canvas before re-drawing.
+    UntangleGame.Graphics.clear();
+
+    // draw background
+    UntangleGame.Graphics.drawBackgroundGradient();
+
+    // draw text
+    UntangleGame.Graphics.drawText(UntangleGame.progressPercentage);
+
+    // draw all remembered line
+    $.each(UntangleGame.lines, function (index, line) {
+        var startPoint = line.startPoint;
+        var endPoint = line.endPoint;
+        var thickness = line.thickness;
+        UntangleGame.Graphics.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y, thickness);
+    });
+
+    // draw all remembered circles
+    $.each(UntangleGame.circles, function (index, circle) {
+        UntangleGame.Graphics.drawCircle(circle.x, circle.y);
+    });
 };
 
 UntangleGame.ConnectCircles = function() {
@@ -77,32 +96,6 @@ UntangleGame.UpdateLevelProgress = function() {
     $("#level").html(UntangleGame.currentLevel);
 };
 
-UntangleGame.GameLoop = function() {
-    "use strict";
-
-    // clear the canvas before re-drawing.
-    UntangleGame.Graphics.clear();
-
-    // draw background
-    UntangleGame.Graphics.drawBackgroundGradient();
-
-    // draw text
-    UntangleGame.Graphics.drawText(UntangleGame.progressPercentage);
-
-    // draw all remembered line
-    $.each(UntangleGame.lines, function (index, line) {
-        var startPoint = line.startPoint;
-        var endPoint = line.endPoint;
-        var thickness = line.thickness;
-        UntangleGame.Graphics.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y, thickness);
-    });
-
-    // draw all remembered circles
-    $.each(UntangleGame.circles, function (index, circle) {
-        UntangleGame.Graphics.drawCircle(circle.x, circle.y);
-    });
-};
-
 UntangleGame.CheckLevelCompleteness = function() {
     "use strict";
 
@@ -112,4 +105,22 @@ UntangleGame.CheckLevelCompleteness = function() {
         }
         UntangleGame.SetupCurrentLevel();
     }
+};
+
+UntangleGame.MoveCircle = function (mouseX, mouseY) {
+    "use strict";
+    
+    if (Events.UntangleGame.targetCircle !== undefined) {
+        UntangleGame.circles[UntangleGame.targetCircle] = new UntangleGame.Graphics.Circle(mouseX, mouseY, UntangleGame.Graphics.circleRadius);
+    }
+    UntangleGame.ConnectCircles();
+    UntangleGame.Logic.UpdateLineIntersection(Events.UntangleGame.lines);
+    UntangleGame.UpdateLevelProgress();
+};
+
+UntangleGame.UnselectCircle = function() {
+    "use strict";
+    
+    Events.UntangleGame.targetCircle = undefined;
+    Events.UntangleGame.CheckLevelCompleteness();
 };
