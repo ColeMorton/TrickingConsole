@@ -1,9 +1,9 @@
-UntangleLogic = {};
+Logic = {};
 
-UntangleLogic.graphics = UntangleGraphics;
-UntangleLogic.boldLineThickness = 5;
+Logic.Graphics = Graphics;
+Logic.boldLineThickness = 5;
 
-UntangleLogic.isIntersect = function (line1, line2) {
+Logic.IsIntersect = function (line1, line2) {
     "use strict";
 
     // convert line1 to general form of line: Ax+By = C
@@ -27,17 +27,17 @@ UntangleLogic.isIntersect = function (line1, line2) {
         var y = (a1 * c2 - a2 * c1) / d;
 
         // check if intersection line is on both line segments
-        if ((this.isInBetween(line1.startPoint.x, x, line1.endPoint.x) ||
-                this.isInBetween(line1.startPoint.y, y, line1.endPoint.y)) &&
-            (this.isInBetween(line2.startPoint.x, x, line2.endPoint.x) ||
-                this.isInBetween(line2.startPoint.y, y, line2.endPoint.y))) {
+        if ((Logic.IsInBetween(line1.startPoint.x, x, line1.endPoint.x) ||
+                Logic.IsInBetween(line1.startPoint.y, y, line1.endPoint.y)) &&
+            (Logic.IsInBetween(line2.startPoint.x, x, line2.endPoint.x) ||
+                Logic.IsInBetween(line2.startPoint.y, y, line2.endPoint.y))) {
             return true;
         }
         return false;
     }
 };
 
-UntangleLogic.isInBetween = function (a, b, c) {
+Logic.IsInBetween = function (a, b, c) {
     "use strict";
 
     // return false if b is almost equal to a or c
@@ -51,7 +51,7 @@ UntangleLogic.isInBetween = function (a, b, c) {
     return (a < b && b < c) || (c < b && b < a);
 };
 
-UntangleLogic.updateLineIntersection = function (lines) {
+Logic.UpdateLineIntersection = function (lines) {
     "use strict";
 
     // checking lines intersection and bold those lines.
@@ -62,9 +62,9 @@ UntangleLogic.updateLineIntersection = function (lines) {
 
             // we check if two lines are intersected,
             // and bold the line if they are.
-            if (UntangleLogic.isIntersect(line1, line2)) {
-                UntangleLogic.graphics.lineIsBold(line1);
-                UntangleLogic.graphics.lineIsBold(line2);
+            if (Logic.IsIntersect(line1, line2)) {
+                Logic.Graphics.lineIsBold(line1);
+                Logic.Graphics.lineIsBold(line2);
             }
         }
     });

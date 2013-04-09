@@ -1,76 +1,76 @@
-var UntangleGraphics = {};
+var Graphics = {};
 
-UntangleGraphics.circleRadius = 10;
-UntangleGraphics.thinLineThickness = 1;
-UntangleGraphics.boldLineThickness = 5;
-UntangleGraphics.lineStrokeStyle = "#cfc";
-UntangleGraphics.canvas = document.getElementById('game');
+Graphics.circleRadius = 10;
+Graphics.thinLineThickness = 1;
+Graphics.boldLineThickness = 5;
+Graphics.lineStrokeStyle = "#cfc";
+Graphics.canvas = document.getElementById('game');
 
 $(function () {
     "use strict";
 
     // get the reference of the canvas element and the drawing context.
-    UntangleGraphics.ctx = UntangleGraphics.canvas.getContext('2d');
+    Graphics.ctx = Graphics.canvas.getContext('2d');
 });
 
-UntangleGraphics.Circle = function (x, y) {
+Graphics.Circle = function (x, y) {
     "use strict";
     
     this.x = x;
     this.y = y;
 };
 
-UntangleGraphics.Line = function (startPoint, endPoint, thickness) {
+Graphics.Line = function (startPoint, endPoint, thickness) {
     "use strict";
     
     this.startPoint = startPoint;
     this.endPoint = endPoint;
-    this.thickness = thickness !== undefined ? thickness : UntangleGraphics.thinLineThickness;
+    this.thickness = thickness !== undefined ? thickness : Graphics.thinLineThickness;
 };
 
-UntangleGraphics.clear = function () {
+Graphics.clear = function () {
     "use strict";
     
-    var ctx = UntangleGraphics.ctx;
+    var ctx = Graphics.ctx;
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 };
 
-UntangleGraphics.drawLine = function (x1, y1, x2, y2, thickness) {
+Graphics.drawLine = function (x1, y1, x2, y2, thickness) {
     "use strict";
     
-    var ctx = UntangleGraphics.ctx;
+    var ctx = Graphics.ctx;
     ctx.beginPath();
     ctx.moveTo(x1, y1);
     ctx.lineTo(x2, y2);
     ctx.lineWidth = thickness;
-    ctx.strokeStyle = UntangleGraphics.lineStrokeStyle;
+    ctx.strokeStyle = Graphics.lineStrokeStyle;
     ctx.stroke();
 };
 
-UntangleGraphics.drawCircle = function (x, y) {
+Graphics.drawCircle = function (x, y) {
     "use strict";
 
     // prepare the radial gradients fill style
-    var ctx = UntangleGraphics.ctx;
-    var circleGradient = ctx.createRadialGradient(x - 3, y - 3, 1, x, y, UntangleGraphics.circleRadius);
+    var ctx = Graphics.ctx;
+    var circleGradient = ctx.createRadialGradient(x - 3, y - 3, 1, x, y, Graphics.circleRadius);
     circleGradient.addColorStop(0, "#fff");
     circleGradient.addColorStop(1, "#cc0");
     ctx.fillStyle = circleGradient;
 
     // draw path
     ctx.beginPath();
-    ctx.arc(x, y, UntangleGraphics.circleRadius, 0, Math.PI * 2, true);
+    ctx.arc(x, y, Graphics.circleRadius, 0, Math.PI * 2, true);
     ctx.closePath();
 
     // actually fill the circle
     ctx.fill();
 };
 
-UntangleGraphics.drawText = function (progressPercentage) {
+Graphics.drawText = function (progressPercentage) {
     "use strict";
 
     // draw the title text
-    var ctx = UntangleGraphics.ctx;
+    var ctx = Graphics.ctx;
     ctx.font = "26px 'WellFleet'";
     ctx.textAlign = "center";
     ctx.fillStyle = "#ffffff";
@@ -82,11 +82,11 @@ UntangleGraphics.drawText = function (progressPercentage) {
     ctx.fillText("Puzzle " + progressPercentage + "%", 20, ctx.canvas.height - 5);
 };
 
-UntangleGraphics.drawBackgroundGradient = function () {
+Graphics.drawBackgroundGradient = function () {
     "use strict";
 
     // draw gradients background
-    var ctx = UntangleGraphics.ctx;
+    var ctx = Graphics.ctx;
     var bgGradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
     bgGradient.addColorStop(0, "#000000");
     bgGradient.addColorStop(1, "#555555");
@@ -94,34 +94,34 @@ UntangleGraphics.drawBackgroundGradient = function () {
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 };
 
-UntangleGraphics.refresh = function (lines, circles, progressPercentage) {
+Graphics.refresh = function (lines, circles, progressPercentage) {
     "use strict";
 
     // clear the canvas before re-drawing.
-    UntangleGraphics.clear();
+    Graphics.clear();
 
     // draw background
-    UntangleGraphics.drawBackgroundGradient();
+    Graphics.drawBackgroundGradient();
 
     // draw text
-    UntangleGraphics.drawText(progressPercentage);
+    Graphics.drawText(progressPercentage);
 
     // draw all remembered line
     $.each(lines, function (index, line) {
         var startPoint = line.startPoint;
         var endPoint = line.endPoint;
         var thickness = line.thickness;
-        UntangleGraphics.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y, thickness);
+        Graphics.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y, thickness);
     });
 
     // draw all remembered circles
     $.each(circles, function (index, circle) {
-        UntangleGraphics.drawCircle(circle.x, circle.y);
+        Graphics.drawCircle(circle.x, circle.y);
     });
 };
 
-UntangleGraphics.lineIsBold = function (line) {
+Graphics.lineIsBold = function (line) {
     "use strict";
 
-    line.thickness = UntangleGraphics.boldLineThickness;
+    line.thickness = Graphics.boldLineThickness;
 };
