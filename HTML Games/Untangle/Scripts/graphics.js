@@ -74,12 +74,12 @@ Graphics.drawText = function (progressPercentage) {
     ctx.font = "26px 'WellFleet'";
     ctx.textAlign = "center";
     ctx.fillStyle = "#ffffff";
-    ctx.fillText("Untangle Game", ctx.canvas.width / 2, 50);
+    ctx.fillText("Untangle Game", ctx.canvas.width / 2, 80);
 
     // draw the level progress text
     ctx.textAlign = "left";
     ctx.textBaseline = "bottom";
-    ctx.fillText("Puzzle " + progressPercentage + "%", 20, ctx.canvas.height - 5);
+    ctx.fillText("Puzzle " + progressPercentage + "%", 60, ctx.canvas.height - 80);
 };
 
 Graphics.drawBackgroundGradient = function () {
@@ -94,6 +94,33 @@ Graphics.drawBackgroundGradient = function () {
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 };
 
+Graphics.drawLoadingBackgroundText = function () {
+    "use strict";
+
+    // draw the loading text
+    var ctx = Graphics.ctx;
+    ctx.font = "34px 'Rock Salt'";
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#333333";
+    ctx.fillText("loading...", ctx.canvas.width / 2, ctx.canvas.height / 2);
+};
+
+Graphics.LoadBackgroundImage = function () {
+    "use strict";
+
+    // load the background image
+    var ctx = Graphics.ctx;
+    Graphics.background = new Image();
+    
+    Graphics.background.onerror = function () {
+        console.log("Error loading the image.");
+    };
+    
+    // draw the image background
+    Graphics.background.src = "Images/board.png";
+    ctx.drawImage(Graphics.background, 0, 0);
+};
+
 Graphics.refresh = function (lines, circles, progressPercentage) {
     "use strict";
 
@@ -102,6 +129,12 @@ Graphics.refresh = function (lines, circles, progressPercentage) {
 
     // draw background
     Graphics.drawBackgroundGradient();
+    
+    // draw the loading text
+    Graphics.drawLoadingBackgroundText();
+    
+    // load the background image
+    Graphics.LoadBackgroundImage();
 
     // draw text
     Graphics.drawText(progressPercentage);

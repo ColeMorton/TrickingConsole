@@ -36,27 +36,12 @@ UntangleGame.SetupCurrentLevel = function() {
 UntangleGame.GameLoop = function () {
     "use strict";
 
-    // clear the canvas before re-drawing.
-    UntangleGame.Graphics.clear();
-
-    // draw background
-    UntangleGame.Graphics.drawBackgroundGradient();
-
-    // draw text
-    UntangleGame.Graphics.drawText(UntangleGame.progressPercentage);
-
-    // draw all remembered line
-    $.each(UntangleGame.lines, function (index, line) {
-        var startPoint = line.startPoint;
-        var endPoint = line.endPoint;
-        var thickness = line.thickness;
-        UntangleGame.Graphics.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y, thickness);
-    });
-
-    // draw all remembered circles
-    $.each(UntangleGame.circles, function (index, circle) {
-        UntangleGame.Graphics.drawCircle(circle.x, circle.y);
-    });
+    UntangleGame.Graphics.refresh(UntangleGame.lines, UntangleGame.circles, UntangleGame.progressPercentage);
+    
+    UntangleGame.Graphics.background.onload = function () {
+        // setup an interval to loop the gameloop
+        setInterval(gameloop, 30);
+    };
 };
 
 UntangleGame.ConnectCircles = function() {
