@@ -5,7 +5,8 @@ Graphics.circleRadius = 10;
 Graphics.thinLineThickness = 1;
 Graphics.boldLineThickness = 5;
 Graphics.lineStrokeStyle = "#cfc";
-Graphics.canvas = document.getElementById('game');
+canvas = document.getElementById('bg');
+Graphics.layers = new Array();
 
 $(function () {
     "use strict";

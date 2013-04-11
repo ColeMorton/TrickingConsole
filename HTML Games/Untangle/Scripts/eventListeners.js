@@ -10,7 +10,7 @@ $(function () {
     // Add Mouse Event Listener to canvas
     // we find if the mouse down position is on any circle
     // and set that circle as target dragging circle.
-    $("#game").mousedown(function (e) {
+    $("#layers").mousedown(function (e) {
         var mouseX = e.offsetX || 0;
         var mouseY = e.offsetY || 0;
 
@@ -18,14 +18,14 @@ $(function () {
     });
 
     // we move the target dragging circle when the mouse is moving
-    $("#game").mousemove(function (e) {
+    $("#layers").mousemove(function (e) {
         var mouseX = e.offsetX || 0;
         var mouseY = e.offsetY || 0;
         Events.UntangleGame.MoveCircle(mouseX, mouseY);
     });
 
     // We clear the dragging circle data when mouse is up
-    $("#game").mouseup(function () {
+    $("#layers").mouseup(function () {
         Events.UntangleGame.UnselectCircle();
     });
 });

@@ -4,41 +4,47 @@
 <head>
     <meta charset="utf-8">
     <title>Drawing Circles in Canvas</title>
-    <link href='http://fonts.googleapis.com/css?family=Rock+Salt'rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Wellfleet' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:600' rel='stylesheet' type='text/css'/>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans:600' rel='stylesheet' type='text/css' />
     <link rel="stylesheet" href="Styles/untanglestyle.css" />
 </head>
 
-    <body>
-        <section id="page">
-            
-            <header>
-                <h1>Untangle Puzzle Game In Canvas</h1>
-            </header>
+<body>
+    <section id="page">
 
-            <canvas id="game" width="768" height="400">
-                Sorry, your web browser does not support Canvas content.
+        <header>
+            <h1>Untangle Puzzle Game In Canvas</h1>
+        </header>
+
+        <section id="layers">
+            <canvas id="bg" width="768" height="440">
+                Sorry, your web browser does not support canvas content.
             </canvas>
-            
-            <p>
-                Puzzle <span id="level">0</span>, Completeness: <span id="progress">0</span>%
-            </p>
 
-            <div class="progress" style="width: 768px">
-                <div class="bar" id="progressBar"></div>
-            </div>
-
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-            <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-            
-            <script src="Scripts/levels.js"></script>
-            <script src="Scripts/animations.js"></script>
-            <script src="Scripts/graphics.js"></script>
-            <script src="Scripts/logic.js"></script>
-            <script src="Scripts/game.js"></script>
-            <script src="Scripts/eventListeners.js"></script>
-
+            <canvas id="guide" width="768" height="440"></canvas>
+            <canvas id="Canvas1" width="768" height="440"></canvas>
+            <canvas id="ui" width="768" height="440"></canvas>
         </section>
-    </body>
+
+        <p>
+            Puzzle <span id="level">0</span>, Completeness: <span id="progress">0</span>%
+        </p>
+
+        <div class="progress" style="width: 768px">
+            <div class="bar" id="progressBar"></div>
+        </div>
+
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+        <script src="Scripts/levels.js"></script>
+        <script src="Scripts/animations.js"></script>
+        <script src="Scripts/graphics.js"></script>
+        <script src="Scripts/logic.js"></script>
+        <script src="Scripts/game.js"></script>
+        <script src="Scripts/eventListeners.js"></script>
+
+    </section>
+</body>
 </html>
