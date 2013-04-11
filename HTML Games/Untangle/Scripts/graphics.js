@@ -1,5 +1,6 @@
 var Graphics = {};
 
+Graphics.Animations = Animations;
 Graphics.circleRadius = 10;
 Graphics.thinLineThickness = 1;
 Graphics.boldLineThickness = 5;
@@ -74,7 +75,6 @@ Graphics.drawText = function (progressPercentage) {
     ctx.font = "26px 'WellFleet'";
     ctx.textAlign = "center";
     ctx.fillStyle = "#ffffff";
-    ctx.fillText("Untangle Game", ctx.canvas.width / 2, 80);
 
     // draw the level progress text
     ctx.textAlign = "left";
@@ -157,4 +157,14 @@ Graphics.lineIsBold = function (line) {
     "use strict";
 
     line.thickness = Graphics.boldLineThickness;
+};
+
+Graphics.drawGuide = function () {
+    "use strict";
+    
+    // the demension of each frame is 80x30.
+    if (Graphics.Animations.guideReady) {
+        var nextFrameX = Graphics.Animations.guideFrame * 80;
+        Graphics.ctx.drawImage(Graphics.Animations.guide, nextFrameX, 0, 80, 130, 325, 130, 80, 130);
+    }
 };

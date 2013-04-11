@@ -37,11 +37,12 @@ UntangleGame.GameLoop = function () {
     "use strict";
 
     UntangleGame.Graphics.refresh(UntangleGame.lines, UntangleGame.circles, UntangleGame.progressPercentage);
-    
-    UntangleGame.Graphics.background.onload = function () {
-        // setup an interval to loop the gameloop
-        setInterval(gameloop, 30);
-    };
+
+    if (UntangleGame.currentLevel == 0) {
+        
+        // draw the guide animation
+        UntangleGame.Graphics.drawGuide();
+    }
 };
 
 UntangleGame.ConnectCircles = function() {
