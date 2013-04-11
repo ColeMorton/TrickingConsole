@@ -1,18 +1,19 @@
 var Graphics = {};
 
-Graphics.Animations = Animations;
 Graphics.circleRadius = 10;
 Graphics.thinLineThickness = 1;
 Graphics.boldLineThickness = 5;
 Graphics.lineStrokeStyle = "#cfc";
+
+animations = Animations;
+layers = new Array();
 canvas = document.getElementById('bg');
-Graphics.layers = new Array();
 
 $(function () {
     "use strict";
 
     // get the reference of the canvas element and the drawing context.
-    Graphics.ctx = Graphics.canvas.getContext('2d');
+    Graphics.ctx = canvas.getContext('2d');
 });
 
 Graphics.Circle = function (x, y) {
@@ -164,9 +165,9 @@ Graphics.drawGuide = function () {
     "use strict";
     
     // the dimension of each frame is 80x30.
-    if (Graphics.Animations.guideReady) {
-        var nextFrameX = Graphics.Animations.guideNextFrameX();
-        var nextFrameY = Graphics.Animations.guideNextFrameY();
-        Graphics.ctx.drawImage(Graphics.Animations.guide, nextFrameX, nextFrameY, 80, 130, 325, 130, 80, 130);
+    if (animations.guideReady) {
+        var nextFrameX = animations.guideNextFrameX();
+        var nextFrameY = animations.guideNextFrameY();
+        Graphics.ctx.drawImage(animations.guide, nextFrameX, nextFrameY, 80, 130, 325, 130, 80, 130);
     }
 };
