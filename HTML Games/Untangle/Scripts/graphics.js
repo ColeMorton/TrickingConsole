@@ -1,19 +1,20 @@
 var Graphics = {};
 
+var animations = Animations;
+var layers = new Array();
+var canvas = document.getElementById('bg');
+var context = {};
+
 Graphics.circleRadius = 10;
 Graphics.thinLineThickness = 1;
 Graphics.boldLineThickness = 5;
 Graphics.lineStrokeStyle = "#cfc";
 
-animations = Animations;
-layers = new Array();
-canvas = document.getElementById('bg');
-
 $(function () {
     "use strict";
 
     // get the reference of the canvas element and the drawing context.
-    Graphics.ctx = canvas.getContext('2d');
+    context = canvas.getContext('2d');
 });
 
 Graphics.Circle = function (x, y) {
@@ -34,84 +35,77 @@ Graphics.Line = function (startPoint, endPoint, thickness) {
 Graphics.clear = function () {
     "use strict";
     
-    var ctx = Graphics.ctx;
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 };
 
 Graphics.drawLine = function (x1, y1, x2, y2, thickness) {
     "use strict";
     
-    var ctx = Graphics.ctx;
-    ctx.beginPath();
-    ctx.moveTo(x1, y1);
-    ctx.lineTo(x2, y2);
-    ctx.lineWidth = thickness;
-    ctx.strokeStyle = Graphics.lineStrokeStyle;
-    ctx.stroke();
+    context.beginPath();
+    context.moveTo(x1, y1);
+    context.lineTo(x2, y2);
+    context.lineWidth = thickness;
+    context.strokeStyle = Graphics.lineStrokeStyle;
+    context.stroke();
 };
 
 Graphics.drawCircle = function (x, y) {
     "use strict";
 
     // prepare the radial gradients fill style
-    var ctx = Graphics.ctx;
-    var circleGradient = ctx.createRadialGradient(x - 3, y - 3, 1, x, y, Graphics.circleRadius);
+    var circleGradient = context.createRadialGradient(x - 3, y - 3, 1, x, y, Graphics.circleRadius);
     circleGradient.addColorStop(0, "#fff");
     circleGradient.addColorStop(1, "#cc0");
-    ctx.fillStyle = circleGradient;
+    context.fillStyle = circleGradient;
 
     // draw path
-    ctx.beginPath();
-    ctx.arc(x, y, Graphics.circleRadius, 0, Math.PI * 2, true);
-    ctx.closePath();
+    context.beginPath();
+    context.arc(x, y, Graphics.circleRadius, 0, Math.PI * 2, true);
+    context.closePath();
 
     // actually fill the circle
-    ctx.fill();
+    context.fill();
 };
 
 Graphics.drawText = function (progressPercentage) {
     "use strict";
 
     // draw the title text
-    var ctx = Graphics.ctx;
-    ctx.font = "26px 'WellFleet'";
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#ffffff";
+    context.font = "26px 'WellFleet'";
+    context.textAlign = "center";
+    context.fillStyle = "#ffffff";
 
     // draw the level progress text
-    ctx.textAlign = "left";
-    ctx.textBaseline = "bottom";
-    ctx.fillText("Puzzle " + progressPercentage + "%", 60, ctx.canvas.height - 80);
+    context.textAlign = "left";
+    context.textBaseline = "bottom";
+    context.fillText("Puzzle " + progressPercentage + "%", 60, context.canvas.height - 80);
 };
 
 Graphics.drawBackgroundGradient = function () {
     "use strict";
 
     // draw gradients background
-    var ctx = Graphics.ctx;
-    var bgGradient = ctx.createLinearGradient(0, 0, 0, ctx.canvas.height);
+    var bgGradient = context.createLinearGradient(0, 0, 0, context.canvas.height);
     bgGradient.addColorStop(0, "#000000");
     bgGradient.addColorStop(1, "#555555");
-    ctx.fillStyle = bgGradient;
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    context.fillStyle = bgGradient;
+    context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 };
 
 Graphics.drawLoadingBackgroundText = function () {
     "use strict";
 
     // draw the loading text
-    var ctx = Graphics.ctx;
-    ctx.font = "34px 'Rock Salt'";
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#333333";
-    ctx.fillText("loading...", ctx.canvas.width / 2, ctx.canvas.height / 2);
+    context.font = "34px 'Rock Salt'";
+    context.textAlign = "center";
+    context.fillStyle = "#333333";
+    context.fillText("loading...", context.canvas.width / 2, context.canvas.height / 2);
 };
 
 Graphics.LoadBackgroundImage = function () {
     "use strict";
 
     // load the background image
-    var ctx = Graphics.ctx;
     Graphics.background = new Image();
     
     Graphics.background.onerror = function () {
@@ -120,7 +114,7 @@ Graphics.LoadBackgroundImage = function () {
     
     // draw the image background
     Graphics.background.src = "Images/board.png";
-    ctx.drawImage(Graphics.background, 0, 0);
+    context.drawImage(Graphics.background, 0, 0);
 };
 
 Graphics.refresh = function (lines, circles, progressPercentage) {
@@ -168,6 +162,6 @@ Graphics.drawGuide = function () {
     if (animations.guideReady) {
         var nextFrameX = animations.guideNextFrameX();
         var nextFrameY = animations.guideNextFrameY();
-        Graphics.ctx.drawImage(animations.guide, nextFrameX, nextFrameY, 80, 130, 325, 130, 80, 130);
+        context.drawImage(animations.guide, nextFrameX, nextFrameY, 80, 130, 325, 130, 80, 130);
     }
 };
