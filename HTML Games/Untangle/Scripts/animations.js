@@ -1,6 +1,10 @@
 var Animations = {};
 
 Animations.guideReady = true;
+Animations.guideSpeed = 500;
+Animations.guideImage = "Images/guide_sprite.png";
+Animations.guideClippingX = 80;
+Animations.guideClippingY = 0;
 
 $(function() {
 
@@ -12,10 +16,10 @@ $(function() {
         
         // setup timer to switch the display frame of the guide sprite
         Animations.guideFrame = 0;
-        setInterval(Animations.guideFrameNext, 500);
+        setInterval(Animations.guideFrameNext, Animations.guideSpeed);
     };
     
-    Animations.guide.src = "Images/guide_sprite.png";
+    Animations.guide.src = Animations.guideImage;
 });
 
 Animations.guideFrameNext = function() {
@@ -26,4 +30,14 @@ Animations.guideFrameNext = function() {
     if (Animations.guideFrame > 5) {
         Animations.guideFrame = 0;
     }
+};
+
+Animations.guideNextFrameX = function() {
+
+    return Animations.guideFrame * Animations.guideClippingX;
+};
+
+Animations.guideNextFrameY = function () {
+
+    return Animations.guideFrame * Animations.guideClippingY;
 };

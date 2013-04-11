@@ -162,9 +162,10 @@ Graphics.lineIsBold = function (line) {
 Graphics.drawGuide = function () {
     "use strict";
     
-    // the demension of each frame is 80x30.
+    // the dimension of each frame is 80x30.
     if (Graphics.Animations.guideReady) {
-        var nextFrameX = Graphics.Animations.guideFrame * 80;
-        Graphics.ctx.drawImage(Graphics.Animations.guide, nextFrameX, 0, 80, 130, 325, 130, 80, 130);
+        var nextFrameX = Graphics.Animations.guideNextFrameX();
+        var nextFrameY = Graphics.Animations.guideNextFrameY();
+        Graphics.ctx.drawImage(Graphics.Animations.guide, nextFrameX, nextFrameY, 80, 130, 325, 130, 80, 130);
     }
 };
