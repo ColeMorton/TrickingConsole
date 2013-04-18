@@ -4,18 +4,54 @@ var animations = Animations;
 var layers = new Array();
 var canvas = document.getElementById('bg');
 var context = {};
+var checkImagesLoaded = null;
 
 Graphics.circleRadius = 10;
 Graphics.thinLineThickness = 1;
 Graphics.boldLineThickness = 5;
 Graphics.lineStrokeStyle = "#cfc";
+Graphics.imagesLoaded = false;
 
 $(function () {
     "use strict";
 
-    // get the reference of the canvas element and the drawing context.
+    loadImages();
+    checkImagesLoaded = setInterval(checkImagesLoaded, 1);
+
+    // prepare layer 0 (bg)
+    var canvasBg = document.getElementById("bg");
+    layers[0] = canvasBg.getContext("2d");
+    
+    // prepare layer 1 (guide)
+    var canvasGuide = document.getElementById("guide");
+    layers[1] = canvasGuide.getContext("2d");
+    
+    // prepare layer 1 (game)
     context = canvas.getContext('2d');
+    layers[2] = context;
+    
+    // prepare layer 3 (ui)
+    var canvasUi = document.getElementById("ui");
+    layers[3] = canvasUi.getContext("2d");
 });
+
+loadImages = function () {
+    imageLoader.load("Images/guide_sprite.png");
+    imageLoader.load("Images/board.png");
+};
+
+checkImagesLoaded = function () {
+    if (imageLoader.loaded === true) {
+        clearInterval(checkImagesLoaded);
+        Graphics.imagesLoaded = true;
+    }
+};
+
+clear = function (context) {
+    "use strict";
+
+    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
+};
 
 Graphics.Circle = function (x, y) {
     "use strict";
@@ -30,12 +66,6 @@ Graphics.Line = function (startPoint, endPoint, thickness) {
     this.startPoint = startPoint;
     this.endPoint = endPoint;
     this.thickness = thickness !== undefined ? thickness : Graphics.thinLineThickness;
-};
-
-Graphics.clear = function () {
-    "use strict";
-    
-    context.clearRect(0, 0, context.canvas.width, context.canvas.height);
 };
 
 Graphics.drawLine = function (x1, y1, x2, y2, thickness) {
@@ -102,8 +132,11 @@ Graphics.drawLoadingBackgroundText = function () {
     context.fillText("loading...", context.canvas.width / 2, context.canvas.height / 2);
 };
 
-Graphics.LoadBackgroundImage = function () {
+Graphics.drawBackgroundImage = function () {
     "use strict";
+
+    var context = layers[0];
+    clear(context);
 
     // load the background image
     Graphics.background = new Image();
@@ -121,7 +154,7 @@ Graphics.refresh = function (lines, circles, progressPercentage) {
     "use strict";
 
     // clear the canvas before re-drawing.
-    Graphics.clear();
+    clear(context);
 
     // draw background
     Graphics.drawBackgroundGradient();
@@ -130,7 +163,7 @@ Graphics.refresh = function (lines, circles, progressPercentage) {
     Graphics.drawLoadingBackgroundText();
     
     // load the background image
-    Graphics.LoadBackgroundImage();
+    Graphics.drawBackgroundImage();
 
     // draw text
     Graphics.drawText(progressPercentage);

@@ -1,5 +1,8 @@
 var UntangleGame = {};
 
+var checkResourcesLoaded = null;
+var gameloop = null;
+
 UntangleGame.Levels = Levels;
 UntangleGame.Graphics = Graphics;
 UntangleGame.Logic = Logic;
@@ -11,11 +14,30 @@ UntangleGame.progressPercentage = 0;
 $(function () {
     "use strict";
 
-    UntangleGame.SetupCurrentLevel();
-
-    //setup an interval to loop the game loop
-    setInterval(UntangleGame.GameLoop, 30);
+    // ensure resources are loaded before beginning
+    checkResourcesLoaded = setInterval(checkResourcesLoaded, 1);
 });
+
+checkResourcesLoaded = function () {
+    "use strict";
+    
+    // check if all resources are loaded
+    if (UntangleGame.Graphics.imagesLoaded === true) {
+        
+        //  stop resource loaded check and setup game
+        clearInterval(checkResourcesLoaded);
+        setupGame();
+    }
+};
+
+setupGame = function () {
+    "use strict";
+    
+    UntangleGame.SetupCurrentLevel();
+    
+    //setup an interval to loop the game loop
+    gameloop = setInterval(UntangleGame.GameLoop, 30);
+};
 
 UntangleGame.SetupCurrentLevel = function() {
     "use strict";
