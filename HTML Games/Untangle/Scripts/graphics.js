@@ -1,10 +1,10 @@
 var Graphics = {};
 
-var animations = Animations;
 var layers = new Array();
-var canvas = document.getElementById('bg');
-var context = {};
 var checkImagesLoaded = null;
+var background = new Image();
+var guideAnimation = null;
+var guideSprite = new Image();
 
 Graphics.circleRadius = 10;
 Graphics.thinLineThickness = 1;
@@ -18,33 +18,31 @@ $(function () {
     loadImages();
     checkImagesLoaded = setInterval(checkImagesLoaded, 1);
 
-    // prepare layer 0 (bg)
-    var canvasBg = document.getElementById("bg");
-    layers[0] = canvasBg.getContext("2d");
-    
-    // prepare layer 1 (guide)
-    var canvasGuide = document.getElementById("guide");
-    layers[1] = canvasGuide.getContext("2d");
-    
-    // prepare layer 1 (game)
-    context = canvas.getContext('2d');
-    layers[2] = context;
-    
-    // prepare layer 3 (ui)
-    var canvasUi = document.getElementById("ui");
-    layers[3] = canvasUi.getContext("2d");
+    // prepare layers
+    layers[0] = $("#bg")[0].getContext("2d");
+    layers[1] = $("#guide")[0].getContext("2d");
+    layers[2] = $("#game")[0].getContext("2d");
+    layers[3] = $("#ui")[0].getContext("2d");
 });
 
 loadImages = function () {
-    imageLoader.load("Images/guide_sprite.png");
-    imageLoader.load("Images/board.png");
+    guideSprite = imageLoader.load("Images/guide_sprite.png");
+    background = imageLoader.load("Images/board.png");
 };
 
 checkImagesLoaded = function () {
     if (imageLoader.loaded === true) {
         clearInterval(checkImagesLoaded);
         Graphics.imagesLoaded = true;
+        imagesLoaded();
     }
+};
+
+imagesLoaded = function () {
+    guideAnimation = new Animation(guideSprite, 80, 0);
+    guideAnimation.setSpeed(300);
+    guideAnimation.setFirstFrame(1);
+    guideAnimation.setLastFrame(5);
 };
 
 clear = function (context) {
@@ -71,6 +69,7 @@ Graphics.Line = function (startPoint, endPoint, thickness) {
 Graphics.drawLine = function (x1, y1, x2, y2, thickness) {
     "use strict";
     
+    var context = layers[0];
     context.beginPath();
     context.moveTo(x1, y1);
     context.lineTo(x2, y2);
@@ -81,6 +80,8 @@ Graphics.drawLine = function (x1, y1, x2, y2, thickness) {
 
 Graphics.drawCircle = function (x, y) {
     "use strict";
+    
+    var context = layers[0];
 
     // prepare the radial gradients fill style
     var circleGradient = context.createRadialGradient(x - 3, y - 3, 1, x, y, Graphics.circleRadius);
@@ -99,6 +100,8 @@ Graphics.drawCircle = function (x, y) {
 
 Graphics.drawText = function (progressPercentage) {
     "use strict";
+    
+    var context = layers[0];
 
     // draw the title text
     context.font = "26px 'WellFleet'";
@@ -108,11 +111,13 @@ Graphics.drawText = function (progressPercentage) {
     // draw the level progress text
     context.textAlign = "left";
     context.textBaseline = "bottom";
-    context.fillText("Puzzle " + progressPercentage + "%", 60, context.canvas.height - 80);
+    context.fillText("Puzzle " + progressPercentage + "%", 60, context.canvas.height - 100);
 };
 
 Graphics.drawBackgroundGradient = function () {
     "use strict";
+    
+    var context = layers[0];
 
     // draw gradients background
     var bgGradient = context.createLinearGradient(0, 0, 0, context.canvas.height);
@@ -124,6 +129,8 @@ Graphics.drawBackgroundGradient = function () {
 
 Graphics.drawLoadingBackgroundText = function () {
     "use strict";
+    
+    var context = layers[0];
 
     // draw the loading text
     context.font = "34px 'Rock Salt'";
@@ -137,21 +144,13 @@ Graphics.drawBackgroundImage = function () {
 
     var context = layers[0];
     clear(context);
-
-    // load the background image
-    Graphics.background = new Image();
-    
-    Graphics.background.onerror = function () {
-        console.log("Error loading the image.");
-    };
-    
-    // draw the image background
-    Graphics.background.src = "Images/board.png";
-    context.drawImage(Graphics.background, 0, 0);
+    context.drawImage(background, 0, 0);
 };
 
 Graphics.refresh = function (lines, circles, progressPercentage) {
     "use strict";
+    
+    var context = layers[0];
 
     // clear the canvas before re-drawing.
     clear(context);
@@ -191,10 +190,10 @@ Graphics.lineIsBold = function (line) {
 Graphics.drawGuide = function () {
     "use strict";
     
-    // the dimension of each frame is 80x30.
-    if (animations.guideReady) {
-        var nextFrameX = animations.guideNextFrameX();
-        var nextFrameY = animations.guideNextFrameY();
-        context.drawImage(animations.guide, nextFrameX, nextFrameY, 80, 130, 325, 130, 80, 130);
-    }
+    var context = layers[0];
+    context.drawImage(
+        guideAnimation.getImage(),
+        guideAnimation.getFrameX(),
+        guideAnimation.getFrameY(),
+        80, 130, 325, 130, 80, 130);
 };
