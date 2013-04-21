@@ -40,9 +40,10 @@ checkImagesLoaded = function () {
 
 imagesLoaded = function () {
     guideAnimation = new Animation(guideSprite, 80, 0);
-    guideAnimation.setSpeed(300);
     guideAnimation.setFirstFrame(1);
     guideAnimation.setLastFrame(5);
+    guideAnimation.setSpeed(400);
+    guideAnimation.start();
 };
 
 clear = function (context) {
@@ -64,6 +65,69 @@ Graphics.Line = function (startPoint, endPoint, thickness) {
     this.startPoint = startPoint;
     this.endPoint = endPoint;
     this.thickness = thickness !== undefined ? thickness : Graphics.thinLineThickness;
+};
+
+Graphics.drawLayerBackground = function () {
+    "use strict";
+
+    var context = layers[0];
+    clear(context);
+
+    // draw background
+    Graphics.drawBackgroundGradient();
+
+    // draw the loading text
+    Graphics.drawLoadingBackgroundText();
+
+    // load the background image
+    Graphics.drawBackgroundImage();
+};
+
+Graphics.drawAnimations = function () {
+    "use strict";
+
+    var context = layers[1];
+    clear(context);
+
+    context.drawImage(
+        guideAnimation.getImage(),
+        guideAnimation.getFrameX(),
+        guideAnimation.getFrameY(),
+        80, 130, 325, 130, 80, 130);
+};
+
+Graphics.stopAnimations = function() {
+    guideAnimation.stop();
+};
+
+Graphics.drawLayerGame = function (lines, circles) {
+    "use strict";
+
+    var context = layers[2];
+    clear(context);
+
+    // draw all remembered line
+    $.each(lines, function (index, line) {
+        var startPoint = line.startPoint;
+        var endPoint = line.endPoint;
+        var thickness = line.thickness;
+        Graphics.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y, thickness);
+    });
+
+    // draw all remembered circles
+    $.each(circles, function (index, circle) {
+        Graphics.drawCircle(circle.x, circle.y);
+    });
+};
+
+Graphics.drawLayerUi = function (progressPercentage) {
+    "use strict";
+
+    var context = layers[3];
+    clear(context);
+
+    // draw text
+    Graphics.drawText(progressPercentage);
 };
 
 Graphics.drawLine = function (x1, y1, x2, y2, thickness) {
@@ -147,53 +211,8 @@ Graphics.drawBackgroundImage = function () {
     context.drawImage(background, 0, 0);
 };
 
-Graphics.refresh = function (lines, circles, progressPercentage) {
-    "use strict";
-    
-    var context = layers[0];
-
-    // clear the canvas before re-drawing.
-    clear(context);
-
-    // draw background
-    Graphics.drawBackgroundGradient();
-    
-    // draw the loading text
-    Graphics.drawLoadingBackgroundText();
-    
-    // load the background image
-    Graphics.drawBackgroundImage();
-
-    // draw text
-    Graphics.drawText(progressPercentage);
-
-    // draw all remembered line
-    $.each(lines, function (index, line) {
-        var startPoint = line.startPoint;
-        var endPoint = line.endPoint;
-        var thickness = line.thickness;
-        Graphics.drawLine(startPoint.x, startPoint.y, endPoint.x, endPoint.y, thickness);
-    });
-
-    // draw all remembered circles
-    $.each(circles, function (index, circle) {
-        Graphics.drawCircle(circle.x, circle.y);
-    });
-};
-
 Graphics.lineIsBold = function (line) {
     "use strict";
 
     line.thickness = Graphics.boldLineThickness;
-};
-
-Graphics.drawGuide = function () {
-    "use strict";
-    
-    var context = layers[0];
-    context.drawImage(
-        guideAnimation.getImage(),
-        guideAnimation.getFrameX(),
-        guideAnimation.getFrameY(),
-        80, 130, 325, 130, 80, 130);
 };

@@ -1,3 +1,4 @@
+//static class
 var imageLoader = {
     loaded: false,
     loadedImages: 0,

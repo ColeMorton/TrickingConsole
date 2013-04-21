@@ -58,12 +58,18 @@ UntangleGame.SetupCurrentLevel = function() {
 UntangleGame.GameLoop = function () {
     "use strict";
 
-    UntangleGame.Graphics.refresh(UntangleGame.lines, UntangleGame.circles, UntangleGame.progressPercentage);
+    UntangleGame.Graphics.drawLayerBackground();
+    UntangleGame.Graphics.drawLayerGame(UntangleGame.lines, UntangleGame.circles);
+    UntangleGame.Graphics.drawLayerUi(UntangleGame.progressPercentage);
 
-    if (UntangleGame.currentLevel == 0) {
-        
-        // draw the guide animation
-        UntangleGame.Graphics.drawGuide();
+    if (UntangleGame.currentLevel == 0) {       
+        UntangleGame.Graphics.drawAnimations();
+    }
+    
+    // fade out the guideline after level 0
+    if (UntangleGame.currentLevel == 1) {
+        $("#guide").addClass('fadeout');
+        UntangleGame.Graphics.stopAnimations();
     }
 };
 
